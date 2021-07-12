@@ -3,6 +3,7 @@
     <head>
        <script src="jspsych-6.3.1/jspsych.js"></script> 
        <script src="jspsych-6.3.1/plugins/jspsych-html-button-response.js"></script>
+	   <link rel="stylesheet" href="jspsych-6.3.1/css/catAct.css">
        <link rel="stylesheet" href="jspsych-6.3.1/css/jspsych.css">
     </head>
     <body></body>
@@ -11,7 +12,7 @@
 
         var image_trial = {
             type: 'html-button-response',
-            stimulus: '',
+            stimulus: '<h1><b>These are my Pokemon buddies</b><style="text-align:center;" /h1><div class="row"><div class="column"><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png" style="width:100%"></div><div class="column"><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png" style="width:100%"></div><div class="column"><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png" style="width:100%"></div></div>',
             choices: ['<img src="stims/animals/basic/grid/c3_bas3.jpg" width="200" height="200">'],
         }
         timeline.push(image_trial);
