@@ -11,10 +11,15 @@
 
         var image_trial = {
             type: 'html-button-response',
-            stimulus: '<p>picture of dalmation</p>',
-            choices: ['yes'],
+            stimulus: '',
+            choices: ['<img src="stims/animals/basic/grid/c3_bas3.jpg" width="200" height="200">'],
         }
         timeline.push(image_trial);
+
+        jsPsych.init({
+    timeline: timeline,
+    on_finish: function(){jsPsych.data.displayData();}
+  });
 
     </script>
 </html>
