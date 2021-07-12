@@ -9,17 +9,45 @@
     <script>
         var timeline = [];
 
+        var grid_array = [];
+
+        var grid_image_width = 300;
+        var grid_image_height = 300;
+
+        var image_names = ["stims/animals/basic/grid/c3_bas4.jpg", "stims/animals/basic/grid/c3_bas3.jpg", "stims/animals/basic/grid/c3_bas4.jpg", "stims/animals/basic/grid/c3_bas3.jpg"];
+
+        for (var i = 0; i < image_names.length; i++) {
+            grid_array.push('<img src="'+image_names[i]+'" width='+grid_image_width+' height='+grid_image_height+'>')
+        }
+       //var timeline_variables = [
+        //    {image: 'stims/animals/basic/grid/c3_bas3.jpg', width: ["300"], height: ["300"]},
+        //    {image: 'stims/animals/basic/grid/c3_bas4.jpg', width: ["300"], height: ["300"]}
+      //  ]
+
         var image_trial = {
             type: 'html-button-response',
             stimulus: '',
-            choices: ['<img src="stims/animals/basic/grid/c3_bas3.jpg" width="200" height="200">'],
+            choices: grid_array,
         }
         timeline.push(image_trial);
 
-        jsPsych.init({
-    timeline: timeline,
-    on_finish: function(){jsPsych.data.displayData();}
-  });
+        //var image_trial_2 = {
+       //     type: 'html-button-response',
+        //    stimulus: '',
+        //    choices: ['<img src="stims/animals/basic/grid/c3_bas4.jpg" width="300" height="300">'],
+       // }
+        //timeline.push(image_trial_2);
+
+  //   var test_procedure = {
+  //      timeline: [image_trial],
+   //     timeline_variables: timeline_variables,
+  //  }
+
+  //  timeline.push(test_procedure);
+    jsPsych.init({
+       timeline: timeline,
+       on_finish: function(){jsPsych.data.displayData();}
+    });
 
     </script>
 </html>
