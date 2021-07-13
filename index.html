@@ -12,14 +12,18 @@
 
         var grid_array = [];
 
-        var grid_image_width = 300;
-        var grid_image_height = 300;
+        var grid_image_width = 200;
+        var grid_image_height = 200;
 
-        var image_names = ["stims/animals/basic/grid/c3_bas4.jpg", "stims/animals/basic/grid/c3_bas3.jpg", "stims/animals/basic/grid/c3_bas4.jpg", "stims/animals/basic/grid/c3_bas3.jpg"];
+        var image_names = ["stims/animals/subordinate/grid/temp_c3_sub6.png", "stims/animals/subordinate/grid/temp_c3_sub7.png", "stims/animals/basic/grid/c3_bas4.jpg", "stims/animals/basic/grid/c3_bas3.jpg", "stims/animals/superordinate/grid/c3_sup4.jpg", "stims/animals/superordinate/grid/c3_sup3.jpg", "stims/animals/superordinate/grid/c3_sup5.jpg", "stims/animals/superordinate/grid/c3_sup6.jpg",
+        "stims/vegetables/subordinate/grid/temp_c1_sub6.png", "stims/vegetables/subordinate/grid/temp_c1_sub7.png", "stims/vegetables/basic/grid/c1_bas3.jpg", "stims/vegetables/basic/grid/c1_bas4.jpg", "stims/vegetables/superordinate/grid/c1_sup2.jpg", "stims/vegetables/superordinate/grid/c1_sup3.jpg", "stims/vegetables/superordinate/grid/c1_sup4.jpg", "stims/vegetables/superordinate/grid/c1_sup5.jpg",
+        "stims/vehicles/subordinate/grid/temp_c2_sub6.png", "stims/vehicles/subordinate/grid/temp_c2_sub7.png", "stims/vehicles/basic/grid/c2_bas2.jpg", "stims/vehicles/basic/grid/c2_bas4.jpg", "stims/vehicles/superordinate/grid/c2_sup2.jpg", "stims/vehicles/superordinate/grid/c2_sup4.jpg", "stims/vehicles/superordinate/grid/c2_sup5.jpg", "stims/vehicles/superordinate/grid/c2_sup6.jpg"];
 
         for (var i = 0; i < image_names.length; i++) {
             grid_array.push('<img src="'+image_names[i]+'" width='+grid_image_width+' height='+grid_image_height+'>')
         }
+        var shuffled_grid_array = jsPsych.randomization.repeat(grid_array, 1);
+
        //var timeline_variables = [
         //    {image: 'stims/animals/basic/grid/c3_bas3.jpg', width: ["300"], height: ["300"]},
         //    {image: 'stims/animals/basic/grid/c3_bas4.jpg', width: ["300"], height: ["300"]}
@@ -27,8 +31,9 @@
 
         var image_trial = {
             type: 'html-button-response',
-            stimulus: '<h1><b>These are my Pokemon buddies</b><style="text-align:center;" /h1><div class="row"><div class="column"><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png" style="width:50%"></div><div class="column"><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png" style="width:50%"></div><div class="column"><img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png" style="width:50%"></div></div>',
-            choices: grid_array,
+            stimulus: '<h1><b>These are 3 wugs.</b><style="text-align:center;" /h1><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div></div> <h1><b>Pick all the wugs.</b><style="text-align:center;" /h1><div class="row"><div class="column">',
+                
+            choices: shuffled_grid_array,
         }
         timeline.push(image_trial);
 
