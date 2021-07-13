@@ -7,7 +7,10 @@
        <link rel="stylesheet" href="jspsych-6.3.1/css/jspsych.css">
     </head>
     <body></body>
+        
     <script>
+        //ADD: wrapper for preventing image moments when resizing windows (?)
+
         var timeline = [];
 
         var grid_array = [];
@@ -22,13 +25,17 @@
         for (var i = 0; i < image_names.length; i++) {
             grid_array.push('<img src="'+image_names[i]+'" width='+grid_image_width+' height='+grid_image_height+'>')
         }
+        //ADD: center array
         var shuffled_grid_array = jsPsych.randomization.repeat(grid_array, 1);
 
-       //var timeline_variables = [
-        //    {image: 'stims/animals/basic/grid/c3_bas3.jpg', width: ["300"], height: ["300"]},
-        //    {image: 'stims/animals/basic/grid/c3_bas4.jpg', width: ["300"], height: ["300"]}
-      //  ]
 
+       // var training_image_names_array = [];
+       //var training_image_width = 200;
+      //  var training_image_height = 200;
+
+       // var training_image_names = ["stims/animals/subordinate/training/c3_sub1.jpg", "stims/animals/subordinate/training/c3_sub2.jpg", "stims/animals/subordinate/training/c3_sub3.jpg"]
+
+        //ADD: for loop for training images from an array to be able to randomize order(?)
         var image_trial = {
             type: 'html-button-response',
             stimulus: '<p><b><font size="6.5">These are 3 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div></div> <p><b><font size="6.5">Pick all the wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column">',
@@ -36,19 +43,6 @@
         }
         timeline.push(image_trial);
 
-        //var image_trial_2 = {
-       //     type: 'html-button-response',
-        //    stimulus: '',
-        //    choices: ['<img src="stims/animals/basic/grid/c3_bas4.jpg" width="300" height="300">'],
-       // }
-        //timeline.push(image_trial_2);
-
-  //   var test_procedure = {
-  //      timeline: [image_trial],
-   //     timeline_variables: timeline_variables,
-  //  }
-
-  //  timeline.push(test_procedure);
     jsPsych.init({
        timeline: timeline,
        on_finish: function(){jsPsych.data.displayData();}
