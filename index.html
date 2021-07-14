@@ -16,7 +16,7 @@
 
         var timeline = [];
 
-        var grid_array = [];
+        var shuffled_grid_array = [];
 
         var grid_image_width = 200;
         var grid_image_height = 200;
@@ -25,11 +25,12 @@
         "stims/vegetables/subordinate/grid/temp_c1_sub6.png", "stims/vegetables/subordinate/grid/temp_c1_sub7.png", "stims/vegetables/basic/grid/c1_bas3.jpg", "stims/vegetables/basic/grid/c1_bas4.jpg", "stims/vegetables/superordinate/grid/c1_sup2.jpg", "stims/vegetables/superordinate/grid/c1_sup3.jpg", "stims/vegetables/superordinate/grid/c1_sup4.jpg", "stims/vegetables/superordinate/grid/c1_sup5.jpg",
         "stims/vehicles/subordinate/grid/c2_sub6.jpg", "stims/vehicles/subordinate/grid/temp_c2_sub7.png", "stims/vehicles/basic/grid/c2_bas2.jpg", "stims/vehicles/basic/grid/c2_bas4.jpg", "stims/vehicles/superordinate/grid/c2_sup2.jpg", "stims/vehicles/superordinate/grid/c2_sup4.jpg", "stims/vehicles/superordinate/grid/c2_sup5.jpg", "stims/vehicles/superordinate/grid/c2_sup6.jpg"];
 
-        for (var i = 0; i < image_names.length; i++) {
-            grid_array.push('<img src="'+image_names[i]+'" width='+grid_image_width+' height='+grid_image_height+'>')
+        var shuffled_images = jsPsych.randomization.repeat(image_names, 1);
+
+        for (var i = 0; i < shuffled_images.length; i++) {
+            shuffled_grid_array.push('<img src="'+shuffled_images[i]+'" width='+grid_image_width+' height='+grid_image_height+'>')
         }
-        //ADD: center array
-        var shuffled_grid_array = jsPsych.randomization.repeat(grid_array, 1);
+        
 
 
        // var training_image_names_array = [];
@@ -39,29 +40,40 @@
        // var training_image_names = ["stims/animals/subordinate/training/c3_sub1.jpg", "stims/animals/subordinate/training/c3_sub2.jpg", "stims/animals/subordinate/training/c3_sub3.jpg"]
 
         //ADD: for loop for training images from an array to be able to randomize order(?)
+
+        var subject_response ="";
+
         var sampling_trial = {
             type: 'html-button-response',
             stimulus: 
-            '<p><b><font size="6.5">These are 3 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div></div> <p><b><font size="6.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="6.5">Which of these objects would you like to learn the name of?</font></b><style="text-align:center;" /p><div class="row"><div class="column">',
+            '<p><b><font size="6.5">These are 3 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div> <p><b><font size="6.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="6.5">Which of these objects would you like to learn the name of?</font></b><style="text-align:center;" /p><div class="row"><div class="column">',
             choices: shuffled_grid_array,
-            data: {
-                response: 'imgnumber',
+            on_finish: function(data) {
+                subject_response = shuffled_images[data.response];
+                console.log(subject_response);
+                console.log(data);
             }
         }
         timeline.push(sampling_trial);
-
-        var subject_response = shuffled_grid_array[sampling_trial.data.response];
 
    // timeline_variables: [
     //    {css_classes: ['left-align']},
     //    {css_classes: ['right-align']},
    //     {css_classes: ['center-align']}
    // ]
+   console.log(subject_response);
 
    var moveup_trial = {
        type: 'html-button-response',
-       stimulus: '<p><b><font size="6.5">These are 3 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div><div class="column"><img src="'+subject_response+'" style="width:50%"></div></div> <p><b><font size="6.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="6.5">Pick all of the wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column">',
+       stimulus: 
+            '<p><b><font size="6.5">These are 3 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div> <p><b><font size="6.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="6.5">Which of these objects would you like to learn the name of?</font></b><style="text-align:center;" /p><div class="row"><div class="column">',
        choices: shuffled_grid_array,
+       on_start: function(trial) {
+         trial.stimulus = '<p><b><font size="6.5">These are 3 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div><div class="column"><img src="'+subject_response+'" style="width:50%"></div></div> <p><b><font size="6.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="6.5">Pick all of the wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column">';
+         console.log(trial.stimulus)
+       }
+
+
    }
    timeline.push(moveup_trial);
    
