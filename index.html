@@ -24,7 +24,6 @@
         "stims/vehicles/subordinate/grid/c2_sub6.jpg", "stims/vehicles/subordinate/grid/temp_c2_sub7.png", "stims/vehicles/basic/grid/c2_bas2.jpg", "stims/vehicles/basic/grid/c2_bas4.jpg", "stims/vehicles/superordinate/grid/c2_sup2.jpg", "stims/vehicles/superordinate/grid/c2_sup4.jpg", "stims/vehicles/superordinate/grid/c2_sup5.jpg", "stims/vehicles/superordinate/grid/c2_sup6.jpg"];
 
         var sampling_image_names = ["stims/animals/subordinate/grid/c3_sub7.jpg", "stims/animals/basic/grid/c3_bas3.jpg", "stims/animals/superordinate/grid/c3_sup3.jpg", "stims/vegetables/subordinate/grid/temp_c1_sub6.png", "stims/vegetables/basic/grid/c1_bas4.jpg", "stims/vegetables/superordinate/grid/c1_sup3.jpg", "stims/vehicles/subordinate/grid/c2_sub6.jpg", "stims/vehicles/basic/grid/c2_bas2.jpg", "stims/vehicles/superordinate/grid/c2_sup6.jpg"];
-        // should these be different from grid items or no
 
         var shuffled_sampling_images = jsPsych.randomization.repeat(sampling_image_names, 1);
         // does randomizing actually need to happen or is it more helpful to have them "in order"?
@@ -52,7 +51,7 @@
             type: 'html-button-response',
             stimulus: 
             '<p><b><font size="6.5">These are 3 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div> <p><b><font size="6.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="6.5">Which of these objects would you like to learn the name of?</font></b><style="text-align:center;" /p><div class="row"><div class="column">',
-            //really super needs to be centered
+            //really needs to be centered
                 choices: shuffled_sample_array,
             on_finish: function(data) {
                 subject_response = shuffled_sampling_images[data.response];
