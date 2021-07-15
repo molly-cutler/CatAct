@@ -6,13 +6,10 @@
 	   <link rel="stylesheet" href="jspsych-6.3.1/css/catAct.css">
        <link rel="stylesheet" href="jspsych-6.3.1/css/jspsych.css">
     </head>
-    <body></body>
+    <body>
+    </body>
         
     <script>
-        //after stylesheet??
-        //<style> 
-          //  .center-align #choices {text-align: center; width: 600px;}
-       // </style>
 
         var timeline = [];
 
@@ -41,8 +38,6 @@
             shuffled_grid_array.push('<img src="'+shuffled_images[i]+'" width='+grid_image_width+' height='+grid_image_height+'>')
         }
         
-
-
        // var training_image_names_array = [];
        //var training_image_width = 200;
       //  var training_image_height = 200;
@@ -67,11 +62,6 @@
         }
         timeline.push(sampling_trial);
 
-   // timeline_variables: [
-    //    {css_classes: ['left-align']},
-    //    {css_classes: ['right-align']},
-   //     {css_classes: ['center-align']}
-   // ]
    console.log(subject_response);
 
    var test_trial = {
@@ -85,11 +75,9 @@
          console.log(trial.stimulus)
        }
 
-
    }
    timeline.push(test_trial);
    
-
     jsPsych.init({
        timeline: timeline,
        on_finish: function(){jsPsych.data.displayData();}
