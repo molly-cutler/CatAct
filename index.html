@@ -94,7 +94,7 @@
        stimulus: 
            '<p><b><font size="6.5">These are 3 wugs and 1 '+sampling_image_words[number_response]+'.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div> <p><b><font size="6.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="6.5">Which of these objects would you like to learn the name of?</font></b><style="text-align:center;" /p><div class="row"><div class="column">',
        choices: shuffled_grid_array,
-       response_ends_trial: false,
+       //response_ends_trial: false,
        on_start: function(trial) {
          //if (sampling_image_words[number_response] !== "wug")
             trial.stimulus = '<p><b><font size="6.5">The image you selected is a '+sampling_image_words[number_response]+'.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div><div class="column"><img src="'+subject_response+'" style="width:50%"></div></div><p><b><font size="6.5">wug wug wug '+sampling_image_words[number_response]+'</font></b></p><p><b><font size="6.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="6.5">Now, pick all of the wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column">';
@@ -105,6 +105,22 @@
 
    }
    timeline.push(test_trial);
+
+   var test_trial_2 = {
+       type: 'html-button-response',
+       stimulus: 
+           '<p><b><font size="6.5">These are 3 wugs and 1 '+sampling_image_words[number_response]+'.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div> <p><b><font size="6.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="6.5">Which of these objects would you like to learn the name of?</font></b><style="text-align:center;" /p><div class="row"><div class="column">',
+       choices: shuffled_grid_array,
+       //response_ends_trial: false,
+       on_start: function(trial) {
+         //if (sampling_image_words[number_response] !== "wug")
+            trial.stimulus = '<p><b><font size="6.5">The image you selected is a '+sampling_image_words[number_response]+'.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div><div class="column"><img src="'+subject_response+'" style="width:50%"></div></div><p><b><font size="6.5">wug wug wug '+sampling_image_words[number_response]+'</font></b></p><p><b><font size="6.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="6.5">Now, pick all of the wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column">';
+        // else if (sampling_image_words[number_response] == "wug")
+           // trial.stimulus = '<p><b><font size="6.5">These are 4 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div><div class="column"><img src="'+subject_response+'" style="width:50%"></div></div> <p><b><font size="6.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="6.5">Now, pick all of the wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column">';  
+            console.log(trial.stimulus)
+       }
+   }
+   timeline.push(test_trial_2);
 
    /*var test_multi_select = {
        type: 'survey-multi-select',
