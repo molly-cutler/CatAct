@@ -6,3 +6,12 @@
   flex: 33.33%;
   padding: 5px;
 }
+
+.jspsych-btn {
+  border: 0px solid transparent;
+}
+
+.jspsych-html-button-response-button {
+  border: 5px solid transparent;
+  color: #333;
+}
