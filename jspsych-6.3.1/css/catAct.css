@@ -8,10 +8,16 @@
 }
 
 .jspsych-btn {
-  border: 0px solid transparent;
+  border: 5px solid transparent;
 }
 
 .jspsych-html-button-response-button {
   border: 5px solid transparent;
   color: #333;
+}
+
+#html-button-response-catact-submit {
+  border: 5px solid;
+  font-size: 40px;
+  font-weight: bold;
 }
