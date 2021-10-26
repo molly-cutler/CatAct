@@ -71,6 +71,7 @@ jsPsych.plugins["html-button-response-catact"] = (function() {
         pretty_name: 'Button label',
         default:  'Submit',
         description: 'Label of the submit button.'
+      
       },
       response_ends_trial: {
         type: jsPsych.plugins.parameterType.BOOL,
