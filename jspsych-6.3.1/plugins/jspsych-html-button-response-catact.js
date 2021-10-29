@@ -8,7 +8,7 @@
  *
  **/
 
-jsPsych.plugins["html-button-response-catact"] = (function() {
+ jsPsych.plugins["html-button-response-catact"] = (function() {
 
   var plugin = {};
 
@@ -28,6 +28,13 @@ jsPsych.plugins["html-button-response-catact"] = (function() {
         default: undefined,
         array: true,
         description: 'The labels for the buttons.'
+      },
+      images: {
+        type: jsPsych.plugins.parameterType.STRING,
+        pretty_name: 'Images',
+        default: undefined,
+        array: true,
+        description: 'The images used in the buttons.'
       },
       button_html: {
         type: jsPsych.plugins.parameterType.STRING,
@@ -71,7 +78,6 @@ jsPsych.plugins["html-button-response-catact"] = (function() {
         pretty_name: 'Button label',
         default:  'Submit',
         description: 'Label of the submit button.'
-      
       },
       response_ends_trial: {
         type: jsPsych.plugins.parameterType.BOOL,
@@ -137,28 +143,60 @@ jsPsych.plugins["html-button-response-catact"] = (function() {
     // store response
     var response = {
       rt: null,
-      button: null
+      button: null,
+      selection_array: null,
+      selection_index: null,
+      rt_array: null,
+      selection_type_array: null,
+      final_choice_array:null
     };
 
+    //temporary arrays to hold selection information
+    var selections=[];
+    var selection_indices=[];
+    var selection_rts=[];
+    var selection_types=[];
+    var final_choices=[];
+
     function toggle_response(choice) {
+
+      //add RT
+      var cur_time = performance.now();
+      cur_rt=cur_time-start_time;
+      selection_rts.push(cur_rt);
+
+      //add selection
+      var image_choice=trial.images[choice];
+      selections.push(image_choice);
+      selection_indices.push(choice);
+
+      //console.log(selections);
+      //console.log(selection_indices);
+      //console.log(selection_rts);
 
       if (document.getElementById('jspsych-html-button-response-button-'+choice).style.color=="red") {
         document.getElementById('jspsych-html-button-response-button-'+choice).style.color="#333";
         document.getElementById('jspsych-html-button-response-button-'+choice).style.border="5px solid transparent";
         //update data storage
-        //update selection array
-        //update rt array
-        //update selection type (select or unselect)
-        //remove from choice array
+        //update selection array type
+        selection_types.push("unselect");
+        //remove from final choice array
+        var index = final_choices.indexOf(image_choice);
+        if (index > -1) {
+          final_choices.splice(index, 1);
+        }
       } else {
         document.getElementById('jspsych-html-button-response-button-'+choice).style.color="red";
         document.getElementById('jspsych-html-button-response-button-'+choice).style.border="5px solid";
         //update data storage
-        //update selection array
-        //update rt array
-        //update selection type (select or unselect)
-        //add to choice array
+        //update selection array type
+        selection_types.push("select");
+        //add to final choice array
+        final_choices.push(image_choice);
       }
+
+      //console.log(selection_types);
+     //console.log(final_choices);
     }
 
     // function to handle responses by the subject
@@ -195,16 +233,23 @@ jsPsych.plugins["html-button-response-catact"] = (function() {
       var rt = end_time - start_time;
       response.rt = rt;
 
+      response.rt_array=selection_rts;
+      response.selection_array=selections;
+      response.selection_index=selection_indices;
+      response.selection_type_array=selection_types;
+      response.final_choice_array=final_choices;
+
       // kill any remaining setTimeout handlers
       jsPsych.pluginAPI.clearAllTimeouts();
 
       // gather the data to store for the trial
       var trial_data = {
-        //selection_array:
-        //rt_array:
-        //selection_type_array:
-        //final_choice_array:
-        rt: response.rt,
+        selection_array: response.selection_array,
+        selection_index: response.selection_index,
+        rt_array: response.rt_array,
+        selection_type_array: response.selection_type_array,
+        final_choice_array: response.final_choice_array,
+        final_rt: response.rt,
         //stimulus: trial.stimulus,
         //response: response.button
       };
@@ -234,3 +279,4 @@ jsPsych.plugins["html-button-response-catact"] = (function() {
 
   return plugin;
 })();
+
