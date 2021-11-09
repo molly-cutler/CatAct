@@ -74,6 +74,33 @@
        // var training_image_names = ["stims/animals/subordinate/training/c3_sub1.jpg", "stims/animals/subordinate/training/c3_sub2.jpg", "stims/animals/subordinate/training/c3_sub3.jpg"]
 
         //^for loop for training images from an array to be able to randomize order(?)
+	  
+	  trial_set=[
+	  	"narrow_animal",
+		  "intermediate_animal",
+		  "broad_animal",
+	  	"narrow_vehicle",
+		  "intermediate_vehicle",
+		  "broad_vehicle",
+	  	"narrow_vegetable",
+		  "intermediate_vegetable",
+		  "broad_vegetable"
+	  ];
+	  
+	  var shuffled_trial_set = jsPsych.randomization.repeat(trial_set, 1);
+	  console.log(shuffled_trial_set);
+	  
+	  // for (cur_trial_type in shuffled_trial_set) {
+		  // var cur_training_items = training_items[cur_trial_type];
+		  // var cur_sample_items = sample_items[cur_trial_type];
+		  // var cur_test_images = test_images[cur_trial_type];
+		  
+		  //}
+	  
+	  
+	  var number_trials = 1;
+	  
+	  for (var i = 0; i < number_trials; i++) {
 
         // empty variables to store response data
         var subject_response ="";
@@ -90,7 +117,7 @@
         var sampling_trial = {
             type: 'html-button-response', // need to make this -catact version so it has centered property, but to do that need to make if statement: display submit button iff test trial [although also like enable multiselect iff test trial so... more complicated??]
             stimulus: 
-            '<p><b><font size="4.5">These are 3 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div><b><font size="4.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="4.5">Which of these objects would you like to learn the name of?</font></b><style="text-align:center;" /p><div class="row"><div class="column">',
+            '<p><b><font size="4.5">These are 3 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div><b><font size="4.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="4.5">Which of these objects would you like to learn the name of?</font></b><style="text-align:center;" /p><div class="row"><div class="column"></div></div>',
             //really needs to be centered
                 choices: shuffled_sample_array,
             // log data    
@@ -125,6 +152,8 @@
 
    }
    timeline.push(test_trial);
+   
+};
 
 
    /*var test_multi_select = {
@@ -141,7 +170,7 @@
    // initiate timeline, display data on finish
     jsPsych.init({
        timeline: timeline,
-       on_finish: function(){jsPsych.data.displayData();}
+       on_finish: function(){jsPsych.data.displayData();jsPsych.data.get().localSave('csv','catAct_test.csv');}
     });
 
     // make >1 choice at test
