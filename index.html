@@ -88,7 +88,7 @@
                             narrow_vegetable: {images: [], labels: []}, intermediate_vegetable: {images: [], labels: []}, broad_vegetable: {images: [], labels: []},
                             narrow_vehicle: {images: [], labels: []}, intermediate_vehicle: {images: [], labels: []}, broad_vehicle: {images: [], labels: []}};
            for (var i = 0; i < (training_labels.length - 1); i++) {
-            sample_items[i] = {images: [sample_images[narrow_animal[i]]], labels: [training_lables[i]]}
+            sample_items[i] = {images: [sample_images[i]], labels: [training_labels[i]]}
             }
 
        // var training_image_names_array = [];
