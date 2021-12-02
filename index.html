@@ -134,8 +134,8 @@
 		  //}
 	  
 	  
-	  var number_trials = training_labels.length;
-	  
+	  var number_trials = 9;
+      console.log(number_trials);
 	  for (var i = 0; i < number_trials; i++) {
 
         // empty variables to store response data
@@ -145,9 +145,11 @@
         // display learning trial
         var learning_trial = {
             type: 'html-keyboard-response',
-            stimulus: '<p><b><font size="4.5">These are 3 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div><b><font size="4.5">Press any key to continue.</font></b><style="text-align:center;" /p>',
+            stimulus: '<p><b><font size="4.5">These are 3 '+training_items_named[i[1]]+'.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div><b><font size="4.5">Press any key to continue.</font></b><style="text-align:center;" /p>',
         }
-
+        console.log(number_trials);
+    
+    
         // '+(sample_items_named[i])[labels]+'
         timeline.push(learning_trial);
 
@@ -187,9 +189,11 @@
        }
 
    }
+
+
+
    timeline.push(test_trial);
-   
-};
+      } 
 
 
    /*var test_multi_select = {
