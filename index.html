@@ -67,6 +67,7 @@
             shuffled_grid_array.push('<img src="'+shuffled_images[i]+'" width='+grid_image_width+' height='+grid_image_height+'>')
         }
         
+        // organize training images by trial type
         var training_images = {narrow_animal: ["stims/animals/subordinate/training/c3_sub1.jpg", "stims/animals/subordinate/training/c3_sub2.jpg", "stims/animals/subordinate/training/c3_sub3.jpg"], 
                                 intermediate_animal: ["stims/animals/basic/training/c3_bas1.jpg", "stims/animals/basic/training/c3_bas2.jpg", "stims/animals/basic/training/c3_bas3.jpg"],
                                 broad_animal: ["stims/animals/superordinate/training/c3_sup1.jpg", "stims/animals/superordinate/training/c3_sup2.jpg", "stims/animals/superordinate/training/c3_sup3.jpg"],
@@ -79,6 +80,7 @@
 
         var training_labels = ["wug", "toma", "dax", "beppo", "zeevo", "tesser", "sibu", "deela", "blicket"] 
 
+        // organize sample images by trial type
         var sample_images = {narrow_animal: ["stims/animals/subordinate/grid/c3_sub7.jpg"], intermediate_animal: ["stims/animals/basic/grid/c3_bas3.jpg"], broad_animal: ["stims/animals/superordinate/grid/c3_sup3.jpg"], 
         narrow_vegetable: ["stims/vegetables/subordinate/grid/temp_c1_sub6.png"], intermediate_vegetable: ["stims/vegetables/basic/grid/c1_bas4.jpg"], broad_vegetable: ["stims/vegetables/superordinate/grid/c1_sup3.jpg"], 
         narrow_vehicle: ["stims/vehicles/subordinate/grid/c2_sub6.jpg"], intermediate_vehicle: ["stims/vehicles/basic/grid/c2_bas2.jpg"], broad_vehicle: ["stims/vehicles/superordinate/grid/c2_sup6.jpg"]}
@@ -87,19 +89,19 @@
         var sample_items_named = {narrow_animal: {images: [], labels: []}, intermediate_animal: {images: [], labels: []}, broad_animal: {images: [], labels: []},
                             narrow_vegetable: {images: [], labels: []}, intermediate_vegetable: {images: [], labels: []}, broad_vegetable: {images: [], labels: []},
                             narrow_vehicle: {images: [], labels: []}, intermediate_vehicle: {images: [], labels: []}, broad_vehicle: {images: [], labels: []}};
-           for (var i = 0; i < (training_labels.length - 1); i++) {
+           for (var i = 0; i < (training_labels.length); i++) {
             sample_items_named[i] = {images: [sample_images[i]], labels: [training_labels[i]]}
             }
-        
         var training_items_named = {narrow_animal: {images: [], labels: []}, intermediate_animal: {images: [], labels: []}, broad_animal: {images: [], labels: []},
                             narrow_vegetable: {images: [], labels: []}, intermediate_vegetable: {images: [], labels: []}, broad_vegetable: {images: [], labels: []},
                             narrow_vehicle: {images: [], labels: []}, intermediate_vehicle: {images: [], labels: []}, broad_vehicle: {images: [], labels: []}};
-            for (var i = 0; i < (training_labels.length - 1); i++) {
-                //fill this innnnnnn
+            // this young lad is very troublesome!                
+            for (var i = 0; i < (training_labels.length); i++) {
                 training_items_named[i[0]] = sample_images[i[i]];
                 training_items_named[i[1]] = training_labels[i];
+                console.log(training_items_named[i[0]]);
             }
-        
+            
 
 
        // var training_image_names_array = [];
@@ -145,7 +147,7 @@
         // display learning trial
         var learning_trial = {
             type: 'html-keyboard-response',
-            stimulus: '<p><b><font size="4.5">These are 3 '+training_items_named[i[1]]+'.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div><b><font size="4.5">Press any key to continue.</font></b><style="text-align:center;" /p>',
+            stimulus: '<p><b><font size="4.5">These are 3 '+training_items_named[i[1]]+'s.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:75%"><figcaption style="font-size:24px">'+training_items_named[i[1]]+'</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:75%"><figcaption style="font-size:24px">'+training_items_named[i[1]]+'</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:75%"><figcaption style="font-size:24px">'+training_items_named[i[1]]+'</figcaption></figure></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div><b><font size="4.5">Press any key to continue.</font></b><style="text-align:center;" /p>',
         }
         console.log(number_trials);
     
@@ -157,7 +159,7 @@
         var sampling_trial = {
             type: 'html-button-response', 
             stimulus: 
-            '<p><b><font size="4.5">These are 3 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:75%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div><b><font size="4.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="4.5">Which of these objects would you like to learn the name of?</font></b><style="text-align:center;" /p><div class="row"><div class="column"></div></div>',
+            '<p><b><font size="4.5">These are 3 '+training_items_named[i[1]]+'s.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:75%"><figcaption style="font-size:24px">'+training_items_named[i[1]]+'</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:75%"><figcaption style="font-size:24px">'+training_items_named[i[1]]+'</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:75%"><figcaption style="font-size:24px">'+training_items_named[i[1]]+'</figcaption></figure></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%;opacity:0"></div></div><b><font size="4.5">Your job is to figure out which objects are '+training_items_named[i[1]]+'s and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="4.5">Which of these objects would you like to learn the name of?</font></b><style="text-align:center;" /p><div class="row"><div class="column"></div></div>',
                 choices: shuffled_sample_array,
             // log data    
             on_finish: function(data) {
@@ -182,7 +184,7 @@
        images: shuffled_images,
        response_ends_trial: false,
        on_start: function(trial) {
-            trial.stimulus = '<p><b><font size="4.5">The image you selected is a '+sampling_image_words[number_response]+'.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"><figcaption style="font-size:24px">wug</figcaption></figure></div><div class="column"><figure><img src="'+subject_response+'" style="width:50%"><figcaption style="font-size:24px">'+sampling_image_words[number_response]+'</figcaption></figure></div class="column"></div class="column"></div class="column"></div class="column"><p><b><font size="4.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="4.5">Now, pick all of the wugs.</font></b><style="text-align:center;" /p> <p><b><font size="4.5">When you are finished picking, press the submit button at the bottom of the page.</font></b><style="text-align:center;" /p></div><div class="row"><div class="column"></div></div>';
+            trial.stimulus = '<p><b><font size="4.5">The image you selected is a '+sampling_image_words[number_response]+'.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"><figcaption style="font-size:24px">'+training_items_named[i[1]]+'</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"><figcaption style="font-size:24px">'+training_items_named[i[1]]+'</figcaption></figure></div><div class="column"><figure><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"><figcaption style="font-size:24px">'+training_items_named[i[1]]+'</figcaption></figure></div><div class="column"><figure><img src="'+subject_response+'" style="width:50%"><figcaption style="font-size:24px">'+sampling_image_words[number_response]+'</figcaption></figure></div class="column"></div class="column"></div class="column"></div class="column"><p><b><font size="4.5">Your job is to figure out which objects are '+training_items_named[i[1]]+'s and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="4.5">Now, pick all of the '+training_items_named[i[1]]+'s.</font></b><style="text-align:center;" /p> <p><b><font size="4.5">When you are finished picking, press the submit button at the bottom of the page.</font></b><style="text-align:center;" /p></div><div class="row"><div class="column"></div></div>';
         // else if (sampling_image_words[number_response] == "wug")
            // trial.stimulus = '<p><b><font size="6.5">These are 4 wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column"><img src="stims/animals/subordinate/training/c3_sub1.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub2.jpg" style="width:50%"></div><div class="column"><img src="stims/animals/subordinate/training/c3_sub3.jpg" style="width:50%"></div><div class="column"><img src="'+subject_response+'" style="width:50%"></div></div> <p><b><font size="6.5">Your job is to figure out which objects are wugs and which are not.</font></b><style="text-align:center;" /p> <p><b><font size="6.5">Now, pick all of the wugs.</font></b><style="text-align:center;" /p><div class="row"><div class="column">';  
             console.log(trial.stimulus)
