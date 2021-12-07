@@ -89,14 +89,14 @@
         var sample_items_named = {narrow_animal: {images: [], labels: []}, intermediate_animal: {images: [], labels: []}, broad_animal: {images: [], labels: []},
                             narrow_vegetable: {images: [], labels: []}, intermediate_vegetable: {images: [], labels: []}, broad_vegetable: {images: [], labels: []},
                             narrow_vehicle: {images: [], labels: []}, intermediate_vehicle: {images: [], labels: []}, broad_vehicle: {images: [], labels: []}};
-           for (var i = 0; i < (training_labels.length); i++) {
+           for (var i = 0; i < 9; i++) {
             sample_items_named[i] = {images: [sample_images[i]], labels: [training_labels[i]]}
             }
         var training_items_named = {narrow_animal: {images: [], labels: []}, intermediate_animal: {images: [], labels: []}, broad_animal: {images: [], labels: []},
                             narrow_vegetable: {images: [], labels: []}, intermediate_vegetable: {images: [], labels: []}, broad_vegetable: {images: [], labels: []},
                             narrow_vehicle: {images: [], labels: []}, intermediate_vehicle: {images: [], labels: []}, broad_vehicle: {images: [], labels: []}};
             // this young lad is very troublesome!                
-            for (var i = 0; i < (training_labels.length); i++) {
+            for (var i = 0; i < 9; i++) {
                 training_items_named[i[0]] = sample_images[i[i]];
                 training_items_named[i[1]] = training_labels[i];
                 console.log(training_items_named[i[0]]);
