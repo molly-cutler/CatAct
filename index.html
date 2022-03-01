@@ -166,8 +166,6 @@
 		  console.log(current_category_label_level);
 		  console.log(current_category_label);
 
-		  [["subordinate/training/","_sub1.jpg"],["subordinate/training/","_sub2.jpg"],["subordinate/training/","_sub3.jpg"]]
-
 		  //create training images
 		  var current_training_images = [];
 		  for (var i = 0; i < current_training_image_path_info.length; i++) {
@@ -196,19 +194,19 @@
 				  if (sampling_image.includes(current_category_label) && sampling_image.includes("sub")) {
 					  sampling_image_words.push(current_training_label);
 				  } else {
-					  sampling_image_words.push(current_alternate_training_label)
+					  sampling_image_words.push(current_alternate_training_label);
 				  } 
 			  } else if (current_category_label_level == "intermediate") {
 				  if (sampling_image.includes(current_category_label) && (sampling_image.includes("sub") || sampling_image.includes("bas"))) {
 					  sampling_image_words.push(current_training_label);
 				  } else {
-					  sampling_image_words.push(current_alternate_training_label)
+					  sampling_image_words.push(current_alternate_training_label);
 				  }
 			  } else if (current_category_label_level == "broad") {
 				  if (sampling_image.includes(current_category_label)) {
 					  sampling_image_words.push(current_training_label);
 				  } else {
-					  sampling_image_words.push(current_alternate_training_label)
+					  sampling_image_words.push(current_alternate_training_label);
 				  }
 			  } else if (current_category_label_level == "hypernym") {
 				  if (sampling_image.includes(current_category_label) || sampling_image.includes(hypernym_category)) {
