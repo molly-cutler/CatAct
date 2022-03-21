@@ -25,6 +25,15 @@
 		  return arr;
 		}
 
+		// create instructions and push to timeline
+		var instructions_page_stimulus = '<p><b><font size="4.5">Welcome to the experiment!</font></b></p><p><font size="4.5">In this experiment, we are interested in how people learn the meanings of new words.</font></p><p><font size="4.5">First, you will be shown three pictures, and you will be taught a new name for those pictures. Then, you will see even more pictures, and you will get a chance to choose one to learn its name. Finally, you will be asked to pick out all the pictures with a particular name. You will then repeat this whole process two more times.</font></p><p><b><font size="4.5">Press any key to continue.</font></b></p>';
+		// display instructions page
+		var instructions = {
+			type: 'html-keyboard-response',
+			stimulus: instructions_page_stimulus
+		}
+		timeline.push(instructions);
+
         // BUILD TRIALS
 		
 		var category_kinds =["animals","vegetables","vehicles"];
@@ -248,8 +257,6 @@
 
             },
         }
-		
-		
         timeline.push(learning_trial);
 
         // display sampling trial
@@ -322,6 +329,14 @@
    timeline.push(test_trial);
       } 
 
+	 // create conclusion page and push to timeline
+	 var end_page_stimulus = '<p><b><font size="4.5">Thank you for completing the experiment! Press any key to exit.</font></b></p>';
+		// display conclusion page
+		var end_page = {
+			type: 'html-keyboard-response',
+			stimulus: end_page_stimulus
+		}
+		timeline.push(end_page); 
    
    // initiate timeline, display data on finish
     jsPsych.init({
