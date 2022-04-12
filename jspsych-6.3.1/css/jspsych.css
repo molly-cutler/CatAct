@@ -204,3 +204,7 @@
 #jspsych-data-display {
   text-align: left;
 }
+
+#container {
+  width: 1300px;
+}
