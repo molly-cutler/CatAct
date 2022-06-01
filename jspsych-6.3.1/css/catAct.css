@@ -30,6 +30,34 @@
   font-weight: bold;
 }
 
+.grid-container {
+    border: 0px solid black;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    width: auto;
+    max-width: 600px;
+    align-items:  center;
+    justify-items: center;
+    padding: 2px;
+    margin: auto;
+    text-align: center;
+}
+
+.grid-container-test {
+    border: 0px solid black;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    width: auto;
+    max-width: 1300px;
+    align-items:  center;
+    justify-items: center;
+    padding: 2px;
+    margin: auto;
+    text-align: center;
+}
+
  #container {
    width: 1300px;
 }

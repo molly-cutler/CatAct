@@ -3,7 +3,7 @@
     <head>
        <script src="jspsych-6.3.1/jspsych.js"></script> 
        <script src="jspsych-6.3.1/plugins/jspsych-html-button-response.js"></script>
-       <script src="jspsych-6.3.1/plugins/jspsych-html-button-response-catact.js"></script>
+       <script src="jspsych-6.3.1/plugins/jspsych-html-button-response-cols.js"></script><script src="jspsych-6.3.1/plugins/jspsych-html-button-response-catact.js"></script>
        <script src="jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
        <link rel="stylesheet" href="jspsych-6.3.1/css/jspsych.css">
        <link rel="stylesheet" href="jspsych-6.3.1/css/catAct.css">
@@ -262,7 +262,7 @@
 
         // display sampling trial
         var sampling_trial = {
-            type: 'html-button-response',
+            type: 'html-button-response-cols',
 			stimulus: current_sampling_stimulus,
 			choices: current_sample_array,
 			data: {
