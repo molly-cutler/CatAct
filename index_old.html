@@ -7,10 +7,6 @@
        <script src="jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
        <link rel="stylesheet" href="jspsych-6.3.1/css/jspsych.css">
        <link rel="stylesheet" href="jspsych-6.3.1/css/catAct.css">
-
-       <script src="js/helper.js"></script>
-       <script src="js/settings.js"></script>
-       <script src="js/generate_trials.js"></script>
     </head>
     <body>
     </body>
@@ -39,23 +35,102 @@
 		timeline.push(instructions);
 
         // BUILD TRIALS
-        // key parameters
-        var category_kinds =["animals","vegetables","vehicles"];
-        var category_levels = ["narrow","intermediate","broad"];
-        var training_labels = ["wug","toma","blicket"];	
-        var alternate_training_labels = ["beppo", "tesser", "sibu"];
-        var narrow_correct_category_labels = ["narrow","intermediate","broad"];
-        var intermediate_category_labels = ["intermediate","broad","hypernym"];
-        var broad_category_labels = ["broad","hypernym","hypernym"];
-        var narrow_correct_category_label = jsPsych.randomization.sampleWithoutReplacement(narrow_correct_category_labels,1)[0];	
-        var intermediate_correct_category_label = jsPsych.randomization.sampleWithoutReplacement(intermediate_category_labels,1)[0];	
-        var broad_correct_category_label = jsPsych.randomization.sampleWithoutReplacement(broad_category_labels,1)[0];
 		
-        var training_types = get_training_types(category_levels,category_kinds,training_labels,alternate_training_labels,narrow_correct_category_label,intermediate_correct_category_label,broad_correct_category_label);
-		var trial_order = get_trial_order(category_levels);
+		var category_kinds =["animals","vegetables","vehicles"];
+		var category_levels = ["narrow","intermediate","broad"];
+		
+		var category_kinds_shuffled = jsPsych.randomization.shuffle(category_kinds);
+		var category_levels_shuffled = jsPsych.randomization.shuffle(category_levels);
+		
+		var narrow_correct_category_labels = ["narrow","intermediate","broad"];
+		var narrow_correct_category_label = jsPsych.randomization.sampleWithoutReplacement(narrow_correct_category_labels,1)[0];
+		
+        var intermediate_category_labels = ["intermediate","broad","hypernym"];
+		var intermediate_correct_category_label = jsPsych.randomization.sampleWithoutReplacement(intermediate_category_labels,1)[0];
+		
+		var broad_category_labels = ["broad","hypernym","hypernym"];
+		var broad_correct_category_label = jsPsych.randomization.sampleWithoutReplacement(broad_category_labels,1)[0];
+		
+		var training_labels = ["wug","toma","blicket"];
+		var training_labels_shuffled = jsPsych.randomization.shuffle(training_labels);
+		
+		var alternate_training_labels = ["beppo", "tesser", "sibu"];
+		var alternate_training_labels_shuffled = jsPsych.randomization.shuffle(alternate_training_labels);
+		
+        var training_types = {
+        	narrow: {
+        		category_kind: category_kinds_shuffled[0],
+				category_training_level: "narrow",
+				category_label_level: narrow_correct_category_label,
+				training_label: training_labels_shuffled[0],
+				alternate_training_label: alternate_training_labels_shuffled[0],
+				training_image_path_info: [["subordinate/training/","_sub1.jpg"],["subordinate/training/","_sub2.jpg"],["subordinate/training/","_sub3.jpg"]]
+        	},
+        	intermediate: {
+        		category_kind: category_kinds_shuffled[1],
+				category_training_level: "intermediate",
+				category_label_level: intermediate_correct_category_label,
+				training_label: training_labels_shuffled[1],
+				alternate_training_label: alternate_training_labels_shuffled[1],
+				training_image_path_info: [["subordinate/training/","_sub1.jpg"],["basic/training/","_bas1.jpg"],["basic/training/","_bas2.jpg"]]
+        	},
+        	broad: {
+        		category_kind: category_kinds_shuffled[2],
+				category_training_level: "broad",
+				category_label_level: broad_correct_category_label,
+				training_label: training_labels_shuffled[2],
+				alternate_training_label: alternate_training_labels_shuffled[2],
+				training_image_path_info: [["subordinate/training/","_sub1.jpg"],["superordinate/training/","_sup1.jpg"],["superordinate/training/","_sup2.jpg"]]
+        	}
+        };
+		
+		var trial_order = jsPsych.randomization.shuffle(category_levels);
+		
+        // store names of test phase image files
+        var grid_image_names = [
+			"stims/animals/subordinate/grid/c3_sub8.jpg", 
+			"stims/animals/subordinate/grid/c3_sub7.jpg",
+			 "stims/animals/basic/grid/c3_bas3.jpg", 
+			"stims/animals/basic/grid/c3_bas4.jpg", 
+			"stims/animals/superordinate/grid/c3_sup3.jpg", 
+			"stims/animals/superordinate/grid/c3_sup4.jpg", 
+			"stims/animals/superordinate/grid/c3_sup5.jpg", 
+			"stims/animals/superordinate/grid/c3_sup6.jpg",
+        "stims/vegetables/subordinate/grid/c1_sub4.jpg", 
+			"stims/vegetables/subordinate/grid/c1_sub5.jpg", 
+			"stims/vegetables/basic/grid/c1_bas3.jpg", 
+			"stims/vegetables/basic/grid/c1_bas4.jpg", 
+			"stims/vegetables/superordinate/grid/c1_sup3.jpg", 
+			"stims/vegetables/superordinate/grid/c1_sup4.jpg", 
+			"stims/vegetables/superordinate/grid/c1_sup5.jpg", 
+			"stims/vegetables/superordinate/grid/c1_sup6.jpg",
+        "stims/vehicles/subordinate/grid/c2_sub6.jpg", 
+			"stims/vehicles/subordinate/grid/c2_sub4.jpg", 
+			"stims/vehicles/basic/grid/c2_bas3.jpg", 
+			"stims/vehicles/basic/grid/c2_bas4.jpg", 
+			"stims/vehicles/superordinate/grid/c2_sup3.jpg", 
+			"stims/vehicles/superordinate/grid/c2_sup4.jpg", 
+			"stims/vehicles/superordinate/grid/c2_sup5.jpg", 
+			"stims/vehicles/superordinate/grid/c2_sup6.jpg"];
 
-		console.log(training_types)
-		console.log(trial_order)
+        // store names of sampling phase image files
+        var sampling_image_names = [
+			"stims/animals/subordinate/grid/c3_sub6.jpg", 
+			"stims/animals/basic/grid/c3_bas3.jpg", 
+			"stims/animals/superordinate/grid/c3_sup3.jpg", 
+			"stims/vegetables/subordinate/grid/c1_sub6.jpg", 
+			"stims/vegetables/basic/grid/c1_bas3.jpg", 
+			"stims/vegetables/superordinate/grid/c1_sup3.jpg", 
+			"stims/vehicles/subordinate/grid/c2_sub6.jpg", 
+			"stims/vehicles/basic/grid/c2_bas3.jpg", 
+			"stims/vehicles/superordinate/grid/c2_sup3.jpg"];
+        
+          // create default image size
+          var grid_image_width = 120;
+          var grid_image_height = 120;
+	  
+	  console.log(training_types)
+		  console.log(trial_order)
 	  
 	  for (var j = 0; j < trial_order.length; j++) {
 		  trial = trial_order[j];

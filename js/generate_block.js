@@ -1,65 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-       <script src="jspsych-6.3.1/jspsych.js"></script> 
-       <script src="jspsych-6.3.1/plugins/jspsych-html-button-response.js"></script>
-       <script src="jspsych-6.3.1/plugins/jspsych-html-button-response-cols.js"></script><script src="jspsych-6.3.1/plugins/jspsych-html-button-response-catact.js"></script>
-       <script src="jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
-       <link rel="stylesheet" href="jspsych-6.3.1/css/jspsych.css">
-       <link rel="stylesheet" href="jspsych-6.3.1/css/catAct.css">
+// generate a block for CatAct
 
-       <script src="js/helper.js"></script>
-       <script src="js/settings.js"></script>
-       <script src="js/generate_trials.js"></script>
-    </head>
-    <body>
-    </body>
-        
-    <script>
-
-        // create timeline
-        var timeline = [];
-		
-		// helper function, https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array
-		function removeItemOnce(arr, value) {
-		  var index = arr.indexOf(value);
-		  if (index > -1) {
-		    arr.splice(index, 1);
-		  }
-		  return arr;
-		}
-
-		// create instructions and push to timeline
-		var instructions_page_stimulus = '<div id="container"><p><b><font size="4.5">Welcome to the experiment!</font></b></p><p><font size="4.5">In this experiment, we are interested in how people learn the meanings of new words.</font></p><p><font size="4.5">First, you will be shown three pictures, and you will be taught a new name for those objects. Then, you will see a new set of objects that may or may not share the same name. You will get a chance to learn the name of one of the new objects. Finally, you will be asked to pick out all the pictures with a particular name. You will then repeat this whole process two more times.</font></p><p><b><font size="4.5">Press any key to continue.</font></b></p></div>';
-		// display instructions page
-		var instructions = {
-			type: 'html-keyboard-response',
-			stimulus: instructions_page_stimulus
-		}
-		timeline.push(instructions);
-
-        // BUILD TRIALS
-        // key parameters
-        var category_kinds =["animals","vegetables","vehicles"];
-        var category_levels = ["narrow","intermediate","broad"];
-        var training_labels = ["wug","toma","blicket"];	
-        var alternate_training_labels = ["beppo", "tesser", "sibu"];
-        var narrow_correct_category_labels = ["narrow","intermediate","broad"];
-        var intermediate_category_labels = ["intermediate","broad","hypernym"];
-        var broad_category_labels = ["broad","hypernym","hypernym"];
-        var narrow_correct_category_label = jsPsych.randomization.sampleWithoutReplacement(narrow_correct_category_labels,1)[0];	
-        var intermediate_correct_category_label = jsPsych.randomization.sampleWithoutReplacement(intermediate_category_labels,1)[0];	
-        var broad_correct_category_label = jsPsych.randomization.sampleWithoutReplacement(broad_category_labels,1)[0];
-		
-        var training_types = get_training_types(category_levels,category_kinds,training_labels,alternate_training_labels,narrow_correct_category_label,intermediate_correct_category_label,broad_correct_category_label);
-		var trial_order = get_trial_order(category_levels);
-
-		console.log(training_types)
-		console.log(trial_order)
-	  
-	  for (var j = 0; j < trial_order.length; j++) {
-		  trial = trial_order[j];
-		  current_trial_info = training_types[trial];
+function generate_block(trial_order) {
+	trial = trial_order[j];
+	current_trial_info = training_types[trial];
 		  console.log(current_trial_info);
 		  
 		  // PREPPTING THE SELECTION ARRAYS
@@ -281,24 +224,3 @@
 
    timeline.push(test_trial);
       } 
-
-	 // create conclusion page and push to timeline
-	 var end_page_stimulus = '<div id="container"><p><b><font size="4.5">Thank you for completing the experiment! Press any key to exit.</font></b></p></div>';
-		// display conclusion page
-		var end_page = {
-			type: 'html-keyboard-response',
-			stimulus: end_page_stimulus
-		}
-		timeline.push(end_page); 
-   
-   // initiate timeline, display data on finish
-    jsPsych.init({
-       timeline: timeline,
-       on_finish: function(){jsPsych.data.displayData();jsPsych.data.get().localSave('csv','catAct_test.csv');}
-    });
-
-    // make >1 choice at test
-    // submit button
-
-    </script>
-</html>
