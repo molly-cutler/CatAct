@@ -3,9 +3,9 @@ function generate_learning_instructions(current_training_label, current_training
     var current_learning_stimulus = '<div id="container"><p><b><font size="4.5">Your job is to figure out which objects are '+current_training_label+'s and which are not.</font></b><style="text-align:center;" /p>';
     current_learning_stimulus+='<p><b><font size="4.5">These are 3 '+current_training_label+'s.</font></b><style="text-align:center;" /p>';
     current_learning_stimulus+='<div class="row">';
-    current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[0]+'" style="width:75%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
-    current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[1]+'" style="width:75%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
-    current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:75%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
+    current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[0]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
+    current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[1]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
+    current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
     current_learning_stimulus+='<div class="column"><img src="'+current_training_images[0]+'" style="width:50%;opacity:0"></div></div>';
     current_learning_stimulus+='<b><font size="4.5">Press any key to continue.</font></b><style="text-align:center;" /p></div>';  
     return(current_learning_stimulus)
@@ -17,24 +17,25 @@ function generate_sampling_instructions(current_training_label, current_training
   var current_sampling_stimulus = '<div id="container"><p><b><font size="4.5">Your job is to figure out which objects are '+current_training_label+'s and which are not.</font></b><style="text-align:center;" /p>'
   current_sampling_stimulus +='<p><b><font size="4.5">These are 3 '+current_training_label+'s.</font></b><style="text-align:center;" /p>';
   current_sampling_stimulus +='<div class="row">';
-  current_sampling_stimulus +='<div class="column"><figure><img src="'+current_training_images[0]+'" style="width:75%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
-  current_sampling_stimulus +='<div class="column"><figure><img src="'+current_training_images[1]+'" style="width:75%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
-  current_sampling_stimulus +='<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:75%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
+  current_sampling_stimulus +='<div class="column"><figure><img src="'+current_training_images[0]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
+  current_sampling_stimulus +='<div class="column"><figure><img src="'+current_training_images[1]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
+  current_sampling_stimulus +='<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_sampling_stimulus +='<div class="column"><img src="'+current_training_images[0]+'" style="width:50%;opacity:0"></div></div>';
   current_sampling_stimulus +='<p><b><font size="4.5">Which of these nine objects would you like to learn the name of? Click on the object that you would like to know the name of.</font></b><style="text-align:center;" /p>';
-  current_sampling_stimulus +='<div class="row"><div class="column"></div></div></div>';
+  //current_sampling_stimulus +='<div class="row"><div class="column"></div></div></div>';
   return(current_sampling_stimulus)
 }
 
 function generate_selection_instructions(current_training_label, current_sampling_label,current_training_images,current_sampling_image) {
 
-  var current_selection_stimulus = '<div id="container"><p><b><font size="4.5">Your job is to figure out which objects are '+current_training_label+'s and which are not.</font></b><style="text-align:center;" /p>';
+  //var current_selection_stimulus = '<div id="container"><p><b><font size="4.5">Your job is to figure out which objects are '+current_training_label+'s and which are not.</font></b><style="text-align:center;" /p>';
+  var current_selection_stimulus = '<div id="container">'
   current_selection_stimulus += '<p><b><font size="4.5">The image you selected is a '+current_sampling_label+'.</font></b><style="text-align:center;" /p>'
   current_selection_stimulus += '<div class="row">';
   current_selection_stimulus += '<div class="column"><figure><img src="'+current_training_images[0]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_selection_stimulus += '<div class="column"><figure><img src="'+current_training_images[1]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_selection_stimulus += '<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
-  current_selection_stimulus += '<div class="column"><figure><img src="'+current_sampling_image+'" style="width:50%"><figcaption style="font-size:24px">'+current_sampling_label+'</figcaption></figure></div class="column"></div class="column"></div class="column"></div class="column">';
+  current_selection_stimulus += '<div class="column"><figure><img src="'+current_sampling_image+'" style="width:50%; border: 5px solid #ff0000; padding: 6px"><figcaption style="font-size:24px;color:#ff0000">'+current_sampling_label+'</figcaption></figure></div class="column"></div class="column"></div class="column"></div class="column">';
   current_selection_stimulus += '<div id="container"><p><b><font size="4.5">Next, you will see a set of 24 new objects and decide which of them are also '+current_training_label+'s.</font></b>';
   current_selection_stimulus += '<p><b><font size="4.5">Press any key to continue.</font></b><style="text-align:center;" /p><style="text-align:center;" /p></div>';
   
@@ -42,17 +43,21 @@ function generate_selection_instructions(current_training_label, current_samplin
 }
 
 function generate_test_instructions(current_training_label, current_sampling_label,current_training_images,current_sampling_image) {
-  var current_test_stimulus = '<div id="container"><p><b><font size="4.5">Your job is to figure out which objects are '+current_training_label+'s and which are not.</font></b><style="text-align:center;" /p>';
+  //var current_test_stimulus = '<div id="container"><p><b><font size="4.5">Your job is to figure out which objects are '+current_training_label+'s and which are not.</font></b><style="text-align:center;" /p>';
+  var current_test_stimulus = '<div id="container">';
   current_test_stimulus += '<div class="row">';
   current_test_stimulus += '<div class="column"><figure><img src="'+current_training_images[0]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_test_stimulus += '<div class="column"><figure><img src="'+current_training_images[1]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_test_stimulus += '<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_test_stimulus += '<div class="column"><figure><img src="'+current_sampling_image+'" style="width:50%"><figcaption style="font-size:24px">'+current_sampling_label+'</figcaption></figure></div class="column"></div class="column"></div class="column"></div class="column">';
-  current_test_stimulus += '<p><b><font size="4.5">Now, pick <u>all of the '+current_training_label+'s</u> from among these 24 objects.</font></b><style="text-align:center;" /p>';
-  current_test_stimulus += '<p><b><font size="4.5">You can pick an object by clicking on it. Objects you select will turn red. You can also unselect items by clicking on them again. ';
-  current_test_stimulus += 'When you are finished selecting <u>all</u> of the objects you think are '+current_training_label+'s, press the submit button at the bottom of the page.</font></b><style="text-align:center;" /p></div>';
-  current_test_stimulus += '<div class="row"><div class="column"></div></div></div>';
-
+  //current_test_stimulus += '<p><b><font size="4.5">Now, pick <u>all of the '+current_training_label+'s</u> from among these 24 objects.</font></b><style="text-align:center;" /p>';
+  //current_test_stimulus += '<p><b><font size="4.5">You can pick an object by clicking on it. Objects you select will turn red. You can also unselect items by clicking on them again. ';
+  //current_test_stimulus += 'When you are finished selecting <u>all</u> of the objects you think are '+current_training_label+'s, press the submit button at the bottom of the page.</font></b><style="text-align:center;" /p></div>';
+  //current_test_stimulus += '<div class="row"><div class="column"></div></div></div>';
+  current_test_stimulus += '<p><font size="4.5"><b>Now, pick <u>all of the '+current_training_label+'s</u> from among these 24 objects. </b>';
+  current_test_stimulus += 'You can pick an object by clicking on it. Objects you select will turn red. You can also unselect items by clicking on them again. When you are finished selecting <u>all</u> of the objects you think are '+current_training_label+'s, press the submit button at the bottom of the page. ';
+   current_test_stimulus += '</font><style="text-align:center;" /p>';
+  
   return(current_test_stimulus)
 }
 
@@ -80,7 +85,7 @@ function generate_block(trial, training_types) {
 	// put sampling images together into an array
 	var current_sample_array=[];
   for (var i = 0; i < shuffled_sampling_images.length; i++) {
-    current_sample_array.push('<img src="'+shuffled_sampling_images[i]+'" width='+grid_image_width+' height='+grid_image_height+' style="border:2px solid #808080">')
+    current_sample_array.push('<img src="'+shuffled_sampling_images[i]+'" width='+grid_image_width+' height='+grid_image_height+'>')
   };
 
   //current trial info
@@ -241,6 +246,8 @@ function generate_block(trial, training_types) {
     choices: current_grid_array,
     images: shuffled_images,
     response_ends_trial: false,
+    margin_horizontal: '2px',
+    margin_vertical: '2px',
     data: {
       current_training_images: current_training_images,
       current_training_label: current_training_label,

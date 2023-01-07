@@ -4,8 +4,6 @@
   align-items: center;
 }
 
-
-
 .column {
   flex: 33.33%;
   padding: 5px;
@@ -14,8 +12,11 @@
 }
 
 .jspsych-btn {
-  border: 5px solid transparent;
+  border: 1px solid black;
   align-items: center;
+  padding: 6px 6px;
+  border-radius: 0px;
+  line-height:0;
 }
 
 .jspsych-html-button-response-button {
@@ -27,7 +28,8 @@
 #html-button-response-catact-submit {
   border: 5px solid;
   font-size: 40px;
-  font-weight: bold;
+  font-weight: bold; 
+  line-height: 1.4;
 }
 
 .grid-container {
@@ -36,7 +38,7 @@
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto auto;
     width: auto;
-    max-width: 600px;
+    max-width: 400px;
     align-items:  center;
     justify-items: center;
     padding: 2px;
@@ -50,7 +52,7 @@
     grid-template-columns: auto auto auto auto auto auto;
     grid-template-rows: auto auto auto auto;
     width: auto;
-    max-width: 1300px;
+    max-width: 800px;
     align-items:  center;
     justify-items: center;
     padding: 2px;
@@ -59,9 +61,14 @@
 }
 
  #container {
-   width: 1300px;
+   width: auto;
 }
 
 #container2 {
   width: 500px;
+}
+
+figure {
+    margin-inline-start: 10px;
+    margin-inline-end: 10px;
 }
