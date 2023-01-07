@@ -35,7 +35,7 @@
 .grid-container {
     border: 0px solid black;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto ;
     grid-template-rows: auto auto auto;
     width: auto;
     max-width: 400px;

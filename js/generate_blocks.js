@@ -36,7 +36,8 @@ function generate_selection_instructions(current_training_label, current_samplin
   current_selection_stimulus += '<div class="column"><figure><img src="'+current_training_images[1]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_selection_stimulus += '<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_selection_stimulus += '<div class="column"><figure><img src="'+current_sampling_image+'" style="width:50%; border: 5px solid #ff0000; padding: 6px"><figcaption style="font-size:24px;color:#ff0000">'+current_sampling_label+'</figcaption></figure></div class="column"></div class="column"></div class="column"></div class="column">';
-  current_selection_stimulus += '<div id="container"><p><b><font size="4.5">Next, you will see a set of 24 new objects and decide which of them are also '+current_training_label+'s.</font></b>';
+  current_selection_stimulus += '<div id="container"><p><b><font size="4.5">Next, you will see a set of 24 new objects and decide which of them are '+current_training_label+'s.</font></b>';
+  current_selection_stimulus += '<div id="container"><p><b><font size="4.5">Your goal is to pick out all of the '+current_training_label+'s.</font></b>';
   current_selection_stimulus += '<p><b><font size="4.5">Press any key to continue.</font></b><style="text-align:center;" /p><style="text-align:center;" /p></div>';
   
   return(current_selection_stimulus)
@@ -54,9 +55,9 @@ function generate_test_instructions(current_training_label, current_sampling_lab
   //current_test_stimulus += '<p><b><font size="4.5">You can pick an object by clicking on it. Objects you select will turn red. You can also unselect items by clicking on them again. ';
   //current_test_stimulus += 'When you are finished selecting <u>all</u> of the objects you think are '+current_training_label+'s, press the submit button at the bottom of the page.</font></b><style="text-align:center;" /p></div>';
   //current_test_stimulus += '<div class="row"><div class="column"></div></div></div>';
-  current_test_stimulus += '<p><font size="4.5"><b>Now, pick <u>all of the '+current_training_label+'s</u> from among these 24 objects. </b>';
-  current_test_stimulus += 'You can pick an object by clicking on it. Objects you select will turn red. You can also unselect items by clicking on them again. When you are finished selecting <u>all</u> of the objects you think are '+current_training_label+'s, press the submit button at the bottom of the page. ';
-   current_test_stimulus += '</font><style="text-align:center;" /p>';
+  current_test_stimulus += '<p style="margin-block-start:0.1em;margin-block-end:0.1em"><font size="4.5"><b>Now, pick <u>all of the other '+current_training_label+'s</u>. </b></font><style="text-align:center;" /p>';
+  current_test_stimulus += '<p style="margin-block-start:0.1em;margin-block-end:0.1em"><font size="3"><i>Pick out a '+current_training_label+ ' by clicking on it below. You can also unselect items by clicking on them again.</i></font><style="text-align:center" /p>'; 
+  current_test_stimulus += '<p style="margin-block-start:0.1em;margin-block-end:0.1em"><font size="3"><i>When you are finished selecting <u>all</u> of the objects you think are '+current_training_label+'s, click Submit at the bottom of the page.</i></font><style="text-align:center /p>';
   
   return(current_test_stimulus)
 }
