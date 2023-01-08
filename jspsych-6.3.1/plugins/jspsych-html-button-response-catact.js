@@ -77,7 +77,7 @@
       button_label: {
         type: jsPsych.plugins.parameterType.STRING,
         pretty_name: 'Button label',
-        default:  'Submit',
+        default:  'SUBMIT',
         description: 'Label of the submit button.'
       },
       response_ends_trial: {
