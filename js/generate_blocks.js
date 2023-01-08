@@ -21,7 +21,7 @@ function generate_sampling_instructions(current_training_label, current_training
   current_sampling_stimulus +='<div class="column"><figure><img src="'+current_training_images[1]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_sampling_stimulus +='<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_sampling_stimulus +='<div class="column"><img src="'+current_training_images[0]+'" style="width:50%;opacity:0"></div></div>';
-  current_sampling_stimulus +='<p><b><font size="4.5">Which of these nine objects would you like to learn the name of?</font></b></p>'
+  current_sampling_stimulus +='<p><b><font size="4.5">Which of these nine objects would you like to learn the name of? You can only make one choice, so choose carefully!</font></b></p>'
   current_sampling_stimulus +='<p><i><font size="4.5">Click on the object that you would like to know the name of.</font></i><style="text-align:center;" /p>';
   //current_sampling_stimulus +='<div class="row"><div class="column"></div></div></div>';
   return(current_sampling_stimulus)
