@@ -2,6 +2,7 @@
 <html>
     <head>
        <script src="jspsych-6.3.1/jspsych.js"></script> 
+       <script src="jspsych-6.3.1/plugins/jspsych-instructions.js"></script>
        <script src="jspsych-6.3.1/plugins/jspsych-html-button-response.js"></script>
        <script src="jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
        <script src="jspsych-6.3.1/plugins/jspsych-html-button-response-cols.js"></script><script src="jspsych-6.3.1/plugins/jspsych-html-button-response-catact.js"></script>
@@ -73,15 +74,53 @@
 			stimulus: end_page_stimulus
 		}
 		timeline.push(end_page); 
+
+    // CREATE FINAL EXPERIMENT MESSAGE/ DEBRIEF AFTER DATA SUCCESSFULLY STORED
+    // including a random code participants can use to confirm they took the study (for payment on Amazon Mechanical Turk)
+
+    //create random code for final message
+    var code = createCode("CatAct");
+
+    //debrief and code message
+    var experimentFinal = [];
+    var final_instructions = {
+      type: 'instructions',
+      size: 400,
+      pages: [
+      'Thanks for participating! In this experiment, we are interested in how people gather information to help them learn new words. Please let us know if you have any questions!'
+        +"<br>" + "<br>"
+        +'<center>Your completion code/ secret key for <u>mTurk</u> is</center>'
+        +"<br>"
+        +'<center><u><b style="font-size:20px">'+ code +'</b></u></center>'
+        +"<br>"
+        +'<center>Please copy/paste this code into the mTurk box.</center>'
+        +"<br>"
+        +'<center>Once you have copied and entered your completion code, you may safely close this window.</center>'
+        ],
+      show_clickable_nav: false,
+      data: {
+        code: code
+      }
+    };
+
+    console.log(code);
+
+    //add instructions trial to experiment
+    experimentFinal.push(final_instructions);
+
    
    // initiate timeline, display data on finish
     jsPsych.init({
        timeline: timeline,
-       on_finish: function(){jsPsych.data.displayData();jsPsych.data.get().localSave('csv','catAct_test.csv');}
+       show_progress_bar: true,
+       on_finish: function() {
+        //jsPsych.data.displayData();
+        jsPsych.data.get().localSave('csv','catAct_test.csv');
+        jsPsych.init({
+          timeline: experimentFinal
+        });
+      }
     });
-
-    // make >1 choice at test
-    // submit button
 
     </script>
 </html>
