@@ -139,7 +139,12 @@
 
     //add event listener to final submission button
     display_element.querySelector('#html-button-response-catact-submit').addEventListener('click', function(e){
-      end_trial();
+      //require at least one image click before advancing
+      if (response_counter>0) {
+        end_trial();
+      } else {
+        display_element.insertAdjacentHTML('beforeend', '<p style="color:red"><b>Please make at least one selection.</b></p>');
+      }
 
     });
 
@@ -161,6 +166,8 @@
     var selection_rts=[];
     var selection_types=[];
     var final_choices=[];
+    // response counter
+    var response_counter = 0;
 
     function toggle_response(choice) {
 
@@ -173,6 +180,9 @@
       var image_choice=trial.images[choice];
       selections.push(image_choice);
       selection_indices.push(choice);
+
+      //update response counter
+      response_counter = response_counter+1;
 
       //console.log(selections);
       //console.log(selection_indices);
