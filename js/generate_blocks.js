@@ -7,7 +7,7 @@ function generate_learning_instructions(current_training_label, current_training
     current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[1]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
     current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
     current_learning_stimulus+='<div class="column"><img src="'+current_training_images[0]+'" style="width:50%;opacity:0"></div></div>';
-    current_learning_stimulus+='<b><font size="4.5">Press any key to continue.</font></b><style="text-align:center;" /p></div>';  
+    current_learning_stimulus+='<p><i><font size="4.5">Click Next to continue.</font></i><style="text-align:center;" /p></div>';  
     return(current_learning_stimulus)
 
 }
@@ -21,7 +21,8 @@ function generate_sampling_instructions(current_training_label, current_training
   current_sampling_stimulus +='<div class="column"><figure><img src="'+current_training_images[1]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_sampling_stimulus +='<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_sampling_stimulus +='<div class="column"><img src="'+current_training_images[0]+'" style="width:50%;opacity:0"></div></div>';
-  current_sampling_stimulus +='<p><b><font size="4.5">Which of these nine objects would you like to learn the name of? Click on the object that you would like to know the name of.</font></b><style="text-align:center;" /p>';
+  current_sampling_stimulus +='<p><b><font size="4.5">Which of these nine objects would you like to learn the name of?</font></b></p>'
+  current_sampling_stimulus +='<p><i><font size="4.5">Click on the object that you would like to know the name of.</font></i><style="text-align:center;" /p>';
   //current_sampling_stimulus +='<div class="row"><div class="column"></div></div></div>';
   return(current_sampling_stimulus)
 }
@@ -37,8 +38,8 @@ function generate_selection_instructions(current_training_label, current_samplin
   current_selection_stimulus += '<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:50%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
   current_selection_stimulus += '<div class="column"><figure><img src="'+current_sampling_image+'" style="width:50%; border: 5px solid #ff0000; padding: 6px"><figcaption style="font-size:24px;color:#ff0000">'+current_sampling_label+'</figcaption></figure></div class="column"></div class="column"></div class="column"></div class="column">';
   current_selection_stimulus += '<div id="container"><p><b><font size="4.5">Next, you will see a set of 24 new objects and decide which of them are '+current_training_label+'s.</font></b>';
-  current_selection_stimulus += '<div id="container"><p><b><font size="4.5">Your goal is to pick out all of the '+current_training_label+'s.</font></b>';
-  current_selection_stimulus += '<p><b><font size="4.5">Press any key to continue.</font></b><style="text-align:center;" /p><style="text-align:center;" /p></div>';
+  current_selection_stimulus += '<div id="container"><p><b><font size="4.5">Your goal is to select <u>all</u> of the '+current_training_label+'s.</font></b>';
+  current_selection_stimulus += '<p><i><font size="4.5">Click Next to continue.</font></i><style="text-align:center;" /p><style="text-align:center;" /p></div>';
   
   return(current_selection_stimulus)
 }
@@ -168,8 +169,9 @@ function generate_block(trial, training_types) {
 
   // display learning trial
   var learning_trial = {
-    type: 'html-keyboard-response',
+    type: 'html-button-response',
     stimulus: current_learning_stimulus ,
+    choices: ["Next"],
     data: {
       current_training_images: current_training_images,
       current_training_label: current_training_label,
@@ -187,6 +189,7 @@ function generate_block(trial, training_types) {
     type: 'html-button-response-cols',
     stimulus: current_sampling_stimulus,
     choices: current_sample_array,
+    button_html: '<button class="jspsych-btn-image-array">%choice%</button>',
     data: {
       current_training_images: current_training_images,
       current_training_label: current_training_label,
@@ -201,7 +204,7 @@ function generate_block(trial, training_types) {
 
    //display selection trial
    var selection_trial = {
-    type: 'html-keyboard-response',
+    type: 'html-button-response',
     on_start: function(trial) {
         last_trial_data = jsPsych.data.get().last(1).values()[0];
         trial.data.sampled_image = last_trial_data.shuffled_sampling_images[last_trial_data.response];
@@ -215,6 +218,7 @@ function generate_block(trial, training_types) {
         last_trial_data.current_training_images,
         last_trial_data.shuffled_sampling_images[last_trial_data.response])
     },
+    choices: ["Next"],
     data: {
       current_training_images: current_training_images,
       current_training_label: current_training_label,
@@ -249,6 +253,7 @@ function generate_block(trial, training_types) {
     response_ends_trial: false,
     margin_horizontal: '2px',
     margin_vertical: '2px',
+    button_html: '<button class="jspsych-btn-image-array">%choice%</button>',
     data: {
       current_training_images: current_training_images,
       current_training_label: current_training_label,

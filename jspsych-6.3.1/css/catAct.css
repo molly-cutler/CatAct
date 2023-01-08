@@ -11,12 +11,45 @@
   align-items: center;
 }
 
-.jspsych-btn {
+.jspsych-btn-image-array {
   border: 1px solid black;
   align-items: center;
   padding: 6px 6px;
   border-radius: 0px;
   line-height:0;
+  display: inline-block;
+  margin: 0px;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+/* only apply the hover style on devices with a mouse/pointer that can hover - issue #977 */
+@media (hover: hover) {
+  .jspsych-btn-image-array:hover {
+    background-color: #ddd;
+    border-color: #aaa;
+  }
+}
+
+.jspsych-btn-image-array:active {
+  background-color: #ddd;
+  border-color:#000000;
+}
+
+.jspsych-btn-image-array:disabled {
+  background-color: #eee;
+  color: #aaa;
+  border-color: #ccc;
+  cursor: not-allowed;
 }
 
 figure {

@@ -30,11 +30,12 @@
         timeline.push(enter_fullscreen);
 
 		// create instructions and push to timeline
-		var instructions_page_stimulus = '<div id="container"><p><b><font size="4.5">Welcome to the experiment!</font></b></p><p><font size="4.5">In this experiment, we are interested in how people learn the meanings of new words.</font></p><p><font size="4.5">First, you will be shown three pictures, and you will be taught a new name for those objects. Then, you will see a new set of objects that may or may not share the same name. You will get a chance to learn the name of one of the new objects. Finally, you will be asked to pick out all the pictures with a particular name. You will then repeat this whole process two more times.</font></p><p><b><font size="4.5">Press any key to continue.</font></b></p></div>';
+		var instructions_page_stimulus = '<div id="container"><p><b><font size="4.5">Welcome to the experiment!</font></b></p><p><font size="4.5">In this experiment, we are interested in how people learn the meanings of new words.</font></p><p><font size="4.5">First, you will be shown three pictures, and you will be taught a new name for those objects. Then, you will see a new set of objects that may or may not share the same name. You will get a chance to learn the name of one of the new objects. Finally, you will be asked to pick out all the pictures with a particular name. You will then repeat this whole process two more times.</font></p><p><i><font size="4.5">Click Next to continue.</font></i></p></div>';
 		// display instructions page
 		var instructions = {
-			type: 'html-keyboard-response',
-			stimulus: instructions_page_stimulus
+			type: 'html-button-response',
+			stimulus: instructions_page_stimulus,
+      choices: ["Next"],
 		}
 		timeline.push(instructions);
 
