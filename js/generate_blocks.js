@@ -56,7 +56,7 @@ function generate_test_instructions(current_training_label, current_sampling_lab
   //current_test_stimulus += '<p><b><font size="4.5">You can pick an object by clicking on it. Objects you select will turn red. You can also unselect items by clicking on them again. ';
   //current_test_stimulus += 'When you are finished selecting <u>all</u> of the objects you think are '+current_training_label+'s, press the submit button at the bottom of the page.</font></b><style="text-align:center;" /p></div>';
   //current_test_stimulus += '<div class="row"><div class="column"></div></div></div>';
-  current_test_stimulus += '<p style="margin-block-start:0em;margin-block-end:0em"><font size="3"><i>Pick out a '+current_training_label+ ' by clicking on it below. You can also unselect items by clicking on them again.<br>';
+  current_test_stimulus += '<p style="margin-block-start:0em;margin-block-end:0em"><font size="3"><i>Select '+current_training_label+ 's by clicking on them below. You can also unselect objects by clicking on them again.<br>';
   current_test_stimulus += 'When you are finished selecting <u>all</u> of the objects you think are '+current_training_label+'s, click SUBMIT at the bottom of the page.</i></font><style="text-align:center /p>';
   
   return(current_test_stimulus)
