@@ -281,3 +281,77 @@ function generate_all_blocks(trial_order, training_types) {
 
   return(all_blocks)
 }
+
+function create_demographics() {
+    var demographic_block=[];
+
+//demographics
+var demo_1 = {
+    type: 'survey-text',
+    preamble: "Next, we have just a few demographic questions.",
+    timeline: [
+    {questions: [{prompt: "Please enter your age (in number of years; e.g., 30).",name: "age"}]},
+    {questions: [{prompt: "What is your gender?",name: "gender"}]},
+    {questions: [{prompt: "What country do you currently live in? (e.g., United States)", name: "country"}]},
+    {questions: [{prompt: "What is your first/ primary language(s)?", name: "language"},{prompt: "Please list any other languages you are fluent in.", name: "other_languages"}]},
+
+    ]
+  }
+  demographic_block.push(demo_1);
+
+  var demo_2 = {
+  type: 'survey-multi-select',
+  preamble: "Next, we have just a few demographic questions.",
+  questions: [
+    {
+      prompt: "What is your race or ethnicity? Please check one or more boxes.", 
+      options: ["White","Black or African American", "Hispanic or Latino", "American Indian or Alaska Native", "Asian", "Native Hawaiian or Other Pacific Islander","Not listed","Prefer not to answer"], 
+      horizontal: false,
+      required: false,
+      name: 'race'
+    }
+    ]
+  }
+  demographic_block.push(demo_2);
+
+  var demo_3 = {
+  type: 'survey-multi-choice',
+
+  questions: [
+    {
+      prompt: "What is your current level of education?", 
+      options: ["Some high school", "High school", "Some college/ university", "Bachelor's degree", "Master's degree","Doctoral degree","Other professional degree","Not applicable/ unknown","Other","Prefer not to answer"], 
+      horizontal: false,
+      required: false,
+      name: 'education'
+    }
+    ]
+    } 
+  demographic_block.push(demo_3);
+
+  return(demographic_block)
+
+}
+
+function create_debrief_questions() {
+
+  var debrief_block = [];
+
+
+//game questions
+var debrief_questions = {
+    type: 'survey-text',
+    questions: [
+    {prompt: "Did you use a strategy to figure out what each word meant? If yes, please explain",name: "strategy", rows: 3,columns: 60},
+    {prompt: "After seeing a new word and the first three examples, how did you choose which (fourth) object to see a word for next?",name: "choice_strategy", rows: 3,columns: 60},
+    {prompt: "Any additional comments?", name: "comments", rows: 3,columns: 60}
+    ],
+
+  }
+
+  debrief_block.push(debrief_questions);
+
+  return(debrief_block)
+
+}
+
