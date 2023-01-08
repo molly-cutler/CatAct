@@ -69,13 +69,19 @@
 
     console.log(timeline)
 
-	 // create conclusion page and push to timeline
+    //create random code for final message
+    var code = createCode("CatAct");
+
+	 // create end of experiment instruction and lead-in to demographics.
 	 var end_page_stimulus = '<div id="container"><p><font size="4.5">Thank you for completing the experiment! </font></p><p><font size="4.5">Now we have a few brief questions. Click next to begin.</p></font></div>';
 		// display conclusion page
 		var end_page = {
 			type: 'instructions',
 			pages: [end_page_stimulus],
-      show_clickable_nav: true
+      show_clickable_nav: true,
+      data: {
+        code: code
+      }
 		}
 		timeline.push(end_page); 
 
@@ -89,9 +95,6 @@
 
     // CREATE FINAL EXPERIMENT MESSAGE/ DEBRIEF AFTER DATA SUCCESSFULLY STORED
     // including a random code participants can use to confirm they took the study (for payment on Amazon Mechanical Turk)
-
-    //create random code for final message
-    var code = createCode("CatAct");
 
     //debrief and code message
     var experimentFinal = [];
@@ -109,10 +112,7 @@
         +"<br>"
         +'<center>Once you have copied and entered your completion code, you may safely close this window.</center>'
         ],
-      show_clickable_nav: false,
-      data: {
-        code: code
-      }
+      show_clickable_nav: false
     };
 
     //add instructions trial to experiment
