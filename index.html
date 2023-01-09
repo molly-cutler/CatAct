@@ -24,6 +24,14 @@
         
     <script>
 
+        //
+        //create random code for final message
+        var code = createCode("CatAct");
+
+        jsPsych.data.addProperties({
+          code: code
+        });
+
         // create timeline
         var timeline = [];
 
@@ -70,19 +78,13 @@
 
     console.log(timeline)
 
-    //create random code for final message
-    var code = createCode("CatAct");
-
 	 // create end of experiment instruction and lead-in to demographics.
 	 var end_page_stimulus = '<div id="container"><p><font size="4.5">Thank you for completing the experiment! </font></p><p><font size="4.5">Now we have a few brief questions. Click next to begin.</p></font></div>';
 		// display conclusion page
 		var end_page = {
 			type: 'instructions',
 			pages: [end_page_stimulus],
-      show_clickable_nav: true,
-      data: {
-        code: code
-      }
+      show_clickable_nav: true
 		}
 		timeline.push(end_page); 
 
