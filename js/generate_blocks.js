@@ -7,7 +7,21 @@ function generate_learning_instructions(current_training_label, current_training
     current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[1]+'" style="width:70%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
     current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:70%"><figcaption style="font-size:24px">'+current_training_label+'</figcaption></figure></div>';
     current_learning_stimulus+='<div class="column"><img src="'+current_training_images[0]+'" style="width:70%;opacity:0"></div></div>';
-    current_learning_stimulus+='<p><i><font size="4.5">Click Next to continue.</font></i><style="text-align:center;" /p></div>';  
+    current_learning_stimulus+='<p><b><font size="4.5">On the next page, we will check your memory of this new word. Make sure you look at the three examples and the new word carefully.</font></b><style="text-align:center;" /p>';
+    current_learning_stimulus+='<p><i>Click Next when you are ready to continue.</font></i><style="text-align:center;" /p></div>';  
+    return(current_learning_stimulus)
+
+}
+
+function generate_check_instructions(current_training_label, current_training_images) {
+    var current_learning_stimulus = '<div id="container"><p><b><font size="4.5">Please enter the new word you just saw.</font></b><style="text-align:center;" /p>';
+    current_learning_stimulus+='<div class="row">';
+    current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[0]+'" style="width:70%"><figcaption style="font-size:24px"></figcaption></figure></div>';
+    current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[1]+'" style="width:70%"><figcaption style="font-size:24px"></figcaption></figure></div>';
+    current_learning_stimulus+='<div class="column"><figure><img src="'+current_training_images[2]+'" style="width:70%"><figcaption style="font-size:24px"></figcaption></figure></div>';
+    current_learning_stimulus+='<div class="column"><img src="'+current_training_images[0]+'" style="width:70%;opacity:0"></div></div>';
+    current_learning_stimulus+='<p> What is the word you just learned for these three objects?</p><p><input name="name_check" type="text" id="test-resp-box" size="20" required/></p>';
+    current_learning_stimulus+='<p><i>Click Next to continue.</font></i><style="text-align:center;" /p></div>';  
     return(current_learning_stimulus)
 
 }
@@ -165,6 +179,7 @@ function generate_block(trial, training_types) {
   console.log(sampling_image_words)
 
   var current_learning_stimulus = generate_learning_instructions(current_training_label, current_training_images); 
+  var current_check_stimulus = generate_check_instructions(current_training_label, current_training_images); 
 	var current_sampling_stimulus = generate_sampling_instructions(current_training_label, current_training_images);
 
   // display learning trial
@@ -178,11 +193,36 @@ function generate_block(trial, training_types) {
       shuffled_sampling_images: shuffled_sampling_images,
       sampling_image_words: sampling_image_words,
       shuffled_test_images: shuffled_images,
+      current_category_label_level: current_category_label_level,
+      current_category_kind: current_category_kind,
+      current_category_training_level,
+      current_alternate_training_label: current_alternate_training_label,
       trial_type: "learning"
     },
   }
 
   cur_block.push(learning_trial);
+
+  var check_trial = {
+    type: 'survey-html-form',
+    html: current_check_stimulus,
+    autofocus: 'test-resp-box',
+    button_label: "Next",
+    data: {
+      current_training_images: current_training_images,
+      current_training_label: current_training_label,
+      shuffled_sampling_images: shuffled_sampling_images,
+      sampling_image_words: sampling_image_words,
+      shuffled_test_images: shuffled_images,
+      current_category_label_level: current_category_label_level,
+      current_category_kind: current_category_kind,
+      current_category_training_level,
+      current_alternate_training_label: current_alternate_training_label,
+      trial_type: "label_check"
+    },
+  }
+
+  cur_block.push(check_trial);
 
   // display sampling trial
   var sampling_trial = {
@@ -196,6 +236,10 @@ function generate_block(trial, training_types) {
       shuffled_sampling_images: shuffled_sampling_images,
       sampling_image_words: sampling_image_words,
       shuffled_test_images: shuffled_images,
+      current_category_label_level: current_category_label_level,
+      current_category_kind: current_category_kind,
+      current_category_training_level,
+      current_alternate_training_label: current_alternate_training_label,
       trial_type: "sampling"
     }
   }
@@ -225,6 +269,10 @@ function generate_block(trial, training_types) {
       shuffled_sampling_images: shuffled_sampling_images,
       sampling_image_words: sampling_image_words,
       shuffled_test_images: shuffled_images,
+      current_category_label_level: current_category_label_level,
+      current_category_kind: current_category_kind,
+      current_category_training_level,
+      current_alternate_training_label: current_alternate_training_label,
       trial_type: "sampling_feedback"
     }
   }
@@ -260,6 +308,10 @@ function generate_block(trial, training_types) {
       shuffled_sampling_images: shuffled_sampling_images,
       sampling_image_words: sampling_image_words,
       shuffled_test_images: shuffled_images,
+      current_category_label_level: current_category_label_level,
+      current_category_kind: current_category_kind,
+      current_category_training_level,
+      current_alternate_training_label: current_alternate_training_label,
       trial_type: "test"
     }
   }
