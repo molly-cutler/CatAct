@@ -22,7 +22,7 @@ function get_training_types(
 			category_label_level: narrow_correct_category_label,
 			training_label: training_labels_shuffled[0],
 			alternate_training_label: alternate_training_labels_shuffled[0],
-			training_image_path_info: [["subordinate/training/","_sub1.jpg"],["subordinate/training/","_sub2.jpg"],["subordinate/training/","_sub3.jpg"]]
+			training_image_path_info: ["sub1.jpg","sub2.jpg","sub3.jpg"]
 		},
 		intermediate: {
 			category_kind: category_kinds_shuffled[1],
@@ -30,7 +30,7 @@ function get_training_types(
 			category_label_level: intermediate_correct_category_label,
 			training_label: training_labels_shuffled[1],
 			alternate_training_label: alternate_training_labels_shuffled[1],
-			training_image_path_info: [["subordinate/training/","_sub1.jpg"],["basic/training/","_bas1.jpg"],["basic/training/","_bas2.jpg"]]
+			training_image_path_info: ["sub1.jpg","bas1.jpg","bas2.jpg"]
 		},
 		broad: {
 			category_kind: category_kinds_shuffled[2],
@@ -38,7 +38,7 @@ function get_training_types(
 			category_label_level: broad_correct_category_label,
 			training_label: training_labels_shuffled[2],
 			alternate_training_label: alternate_training_labels_shuffled[2],
-			training_image_path_info: [["subordinate/training/","_sub1.jpg"],["superordinate/training/","_sup1.jpg"],["superordinate/training/","_sup2.jpg"]]
+			training_image_path_info: ["sub1.jpg","sup1.jpg","sup2.jpg"]
 		}
 	};
 

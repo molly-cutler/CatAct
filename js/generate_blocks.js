@@ -114,10 +114,13 @@ function generate_block(trial, training_types) {
 
   if (current_category_kind=="vegetables") {
     var current_category_label = "c1";
+    var current_category_kind_shortened = "veg";
   } else if (current_category_kind=="vehicles") {
     var current_category_label = "c2";
+    var current_category_kind_shortened = "veh";
   } else {
     var current_category_label = "c3";
+    var current_category_kind_shortened = "ani";
   }
 
   console.log(current_training_label);
@@ -129,7 +132,7 @@ function generate_block(trial, training_types) {
   //create training images
   var current_training_images = [];
   for (var i = 0; i < current_training_image_path_info.length; i++) {
-    current_training_images.push('stims/'+current_category_kind+'/'+current_training_image_path_info[i][0]+current_category_label+current_training_image_path_info[i][1])
+    current_training_images.push('stims/'+current_category_kind_shortened+'_'+current_category_label+'_'+current_training_image_path_info[i])
   };
 
   console.log(current_training_images);
