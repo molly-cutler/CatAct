@@ -332,6 +332,15 @@ function generate_all_blocks(trial_order, training_types) {
     trial=trial_order[j];
     cur_block=generate_block(trial, training_types)
     all_blocks=all_blocks.concat(cur_block)
+
+    if (j < trial_order.length - 1) {
+      var instructions_between_trials = {
+        type: 'html-button-response',
+        stimulus: '<div id="container"><p><b><font size="4.5">Great job!</font></b></p><p><i><font size="4.5">Click Next to learn another word.</font></i></p> </div>',
+        choices: ["Next"],
+      }
+      all_blocks.push(instructions_between_trials);
+    }
   }
 
   return(all_blocks)

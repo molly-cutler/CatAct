@@ -23,14 +23,69 @@
     </body>
         
     <script>
+        // ORGANIZE SUBJECT ID & GENERAL PARAMETERS
+        // generate a random subject ID (just to be safe)
+        var subject_id = Math.floor(Math.random()*1000000);
+        subject_id="p"+subject_id.toString();
+        //console.log(subject_id);
 
-        //
+        // get participant-specific url parameters from mTurk study link
+        var workerId = getParamFromURL('workerId');
+        var assignmentId = getParamFromURL('assignmentId');
+        var hitId = getParamFromURL('hitId');
+
+        //make sure that nobody can enter anything damaging
+        workerId.replace(/[^A-Za-z0-9_]/g, "");
+        hitId.replace(/[^A-Za-z0-9_]/g, "");
+        assignmentId.replace(/[^A-Za-z0-9_]/g, "");
+
+        //set up category conditions
+        var n_cat_level = getParamFromURL('n_cat_level');
+        var i_cat_level = getParamFromURL('i_cat_level');
+        var b_cat_level = getParamFromURL('b_cat_level');
+
+        var catk_n = getParamFromURL('catk_n');
+        var catk_i = getParamFromURL('catk_i');
+        var catk_b = getParamFromURL('catk_b');
+
+        //make sure that nobody can enter anything damaging
+        n_cat_level.replace(/[^A-Za-z0-9_]/g, "");
+        i_cat_level.replace(/[^A-Za-z0-9_]/g, "");
+        b_cat_level.replace(/[^A-Za-z0-9_]/g, "");
+        catk_n.replace(/[^A-Za-z0-9_]/g, "");
+        catk_i.replace(/[^A-Za-z0-9_]/g, "");
+        catk_b.replace(/[^A-Za-z0-9_]/g, "");
+
+        var correct_category_label_levels = create_correct_category_labels(n_cat_level,i_cat_level,b_cat_level);
+        console.log(correct_category_label_levels);
+
+        var category_kinds =["animals","vegetables","vehicles"];
+        var randomized_category_kinds = create_category_kinds(category_kinds,catk_n,catk_i,catk_b);
+        console.log(randomized_category_kinds);
+        
         //create random code for final message
         var code = createCode("CatAct");
 
         jsPsych.data.addProperties({
-          code: code
+          code: code,
+          subject: subject_id,
+          workerId: workerId,
+          hitId: hitId,
+          assignmentId: assignmentId,
+          n_cat_level: n_cat_level,
+          narrow_category_label_level: correct_category_label_levels["narrow"],
+          i_cat_level: i_cat_level,
+          intermediate_category_label_level: correct_category_label_levels["intermediate"],
+          b_cat_level: b_cat_level,
+          broad_category_label_level: correct_category_label_levels["broad"],
+          catk_n: catk_n,
+          narrow_category_kind: randomized_category_kinds["narrow"],
+          catk_i: catk_i,
+          intermediate_category_kind: randomized_category_kinds["intermediate"],
+          catk_b: catk_b,
+          broad_category_kind: randomized_category_kinds["broad"],
         });
+
 
         // create timeline
         var timeline = [];
@@ -55,18 +110,12 @@
 
     // BUILD TRIALS
     // key parameters
-    var category_kinds =["animals","vegetables","vehicles"];
     var category_levels = ["narrow","intermediate","broad"];
-    var training_labels = ["sibu","toma","beppo"];
-    var alternate_training_labels = ["blicket", "roozer", "guffy"];
-    var narrow_correct_category_labels = ["narrow","intermediate","broad"];
-    var intermediate_category_labels = ["intermediate","broad","hypernym"];
-    var broad_category_labels = ["broad","hypernym","hypernym"];
-    var narrow_correct_category_label = jsPsych.randomization.sampleWithoutReplacement(narrow_correct_category_labels,1)[0];
-    var intermediate_correct_category_label = jsPsych.randomization.sampleWithoutReplacement(intermediate_category_labels,1)[0];
-    var broad_correct_category_label = jsPsych.randomization.sampleWithoutReplacement(broad_category_labels,1)[0];
+    var training_labels = ["sibu","kita","beppo"];
+    var alternate_training_labels = ["tibble", "roozer", "guffy"];
+    
 
-    var training_types = get_training_types(category_levels,category_kinds,training_labels,alternate_training_labels,narrow_correct_category_label,intermediate_correct_category_label,broad_correct_category_label);
+    var training_types = get_training_types(randomized_category_kinds,training_labels,alternate_training_labels,correct_category_label_levels);
 		var trial_order = get_trial_order(category_levels);
 
 		console.log(training_types)
