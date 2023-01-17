@@ -321,6 +321,33 @@ function generate_block(trial, training_types) {
 
   cur_block.push(test_trial);
 
+
+  var current_test_meaning_stimulus = '<div id="container"><p> What do you think that <b>' + current_training_label + '</b> means?</p><p><textarea name="word_meaning" type="text" id="test-resp-box" size="20" rows="2" cols="40" required></textarea></p>';
+  current_test_meaning_stimulus+='<p><i>Click Next to continue.</font></i><style="text-align:center;" /p></div>';  
+    
+
+  var test_meaning_trial = {
+    type: 'survey-html-form',
+    html: current_test_meaning_stimulus,
+    autofocus: 'test-resp-box',
+    button_label: "Next",
+    data: {
+      current_training_images: current_training_images,
+      current_training_label: current_training_label,
+      shuffled_sampling_images: shuffled_sampling_images,
+      sampling_image_words: sampling_image_words,
+      shuffled_test_images: shuffled_images,
+      current_category_label_level: current_category_label_level,
+      current_category_kind: current_category_kind,
+      current_category_training_level,
+      current_alternate_training_label: current_alternate_training_label,
+      trial_type: "test_meaning"
+    },
+  }
+
+  cur_block.push(test_meaning_trial);
+
+  
   return(cur_block)
  } 
 
@@ -354,10 +381,10 @@ var demo_1 = {
     type: 'survey-text',
     preamble: "Next, we have just a few demographic questions.",
     timeline: [
-    {questions: [{prompt: "Please enter your age (in number of years; e.g., 30).",name: "age"}]},
-    {questions: [{prompt: "What is your gender?",name: "gender"}]},
-    {questions: [{prompt: "What country do you currently live in? (e.g., United States)", name: "country"}]},
-    {questions: [{prompt: "What is your first/ primary language(s)?", name: "language"},{prompt: "Please list any other languages you are fluent in.", name: "other_languages"}]},
+    {questions: [{prompt: "Please enter your age (in number of years; e.g., 30).",name: "age", required: true}]},
+    {questions: [{prompt: "What is your gender?",name: "gender", required: true}]},
+    {questions: [{prompt: "What country do you currently live in? (e.g., United States)", name: "country", required: true}]},
+    {questions: [{prompt: "What is your first/ primary language(s)?", name: "language", required: true},{prompt: "Please list any other languages you are fluent in.", name: "other_languages"}]},
 
     ]
   }
@@ -371,7 +398,7 @@ var demo_1 = {
       prompt: "What is your race or ethnicity? Please check one or more boxes.", 
       options: ["White","Black or African American", "Hispanic or Latino", "American Indian or Alaska Native", "Asian", "Native Hawaiian or Other Pacific Islander","Not listed","Prefer not to answer"], 
       horizontal: false,
-      required: false,
+      required: true,
       name: 'race'
     }
     ]
@@ -386,7 +413,7 @@ var demo_1 = {
       prompt: "What is your current level of education?", 
       options: ["Some high school", "High school", "Some college/ university", "Bachelor's degree", "Master's degree","Doctoral degree","Other professional degree","Not applicable/ unknown","Other","Prefer not to answer"], 
       horizontal: false,
-      required: false,
+      required: true,
       name: 'education'
     }
     ]
@@ -406,8 +433,8 @@ function create_debrief_questions() {
 var debrief_questions = {
     type: 'survey-text',
     questions: [
-    {prompt: "Did you use a strategy to figure out what each word meant? If yes, please explain",name: "strategy", rows: 3,columns: 60},
-    {prompt: "After seeing a new word and the first three examples, how did you choose which (fourth) object to see a word for next?",name: "choice_strategy", rows: 3,columns: 60},
+    {prompt: "Did you use a strategy to figure out what each word meant? If yes, please explain",name: "strategy", rows: 3,columns: 60, required: true},
+    {prompt: "After seeing a new word and the first three examples, how did you choose which (fourth) object to see a word for next?",name: "choice_strategy", rows: 3,columns: 60, required: true},
     {prompt: "Any additional comments?", name: "comments", rows: 3,columns: 60}
     ],
 

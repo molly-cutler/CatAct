@@ -9,10 +9,14 @@
        <script src="jspsych-6.3.1/plugins/jspsych-instructions.js"></script>
        <script src="jspsych-6.3.1/plugins/jspsych-html-button-response.js"></script>
        <script src="jspsych-6.3.1/plugins/jspsych-fullscreen.js"></script>
+       <script src="jspsych-6.3.1/plugins/jspsych-preload.js"></script>
        <script src="jspsych-6.3.1/plugins/jspsych-html-button-response-cols.js"></script><script src="jspsych-6.3.1/plugins/jspsych-html-button-response-catact.js"></script>
        <script src="jspsych-6.3.1/plugins/jspsych-html-keyboard-response.js"></script>
        <link rel="stylesheet" href="jspsych-6.3.1/css/jspsych.css">
        <link rel="stylesheet" href="jspsych-6.3.1/css/catAct.css">
+
+<!--   <script type="text/javascript" src="lib/vendors/jquery-2.2.0.min.js"></script>
+  <script type="text/javascript" src="lib/jspsych-pavlovia-3.2.5.js"></script> -->
 
        <script src="js/helper.js"></script>
        <script src="js/settings.js"></script>
@@ -86,9 +90,32 @@
           broad_category_kind: randomized_category_kinds["broad"],
         });
 
+        //create image array for preloading
+        var all_grid_images = grid_image_names.concat(sampling_image_names);
+        var all_images = all_grid_images.concat(training_image_names);
+        console.log(all_images);
 
         // create timeline
         var timeline = [];
+
+        /* init connection with pavlovia.org */
+        // var pavlovia_init = {
+        //   type: "pavlovia",
+        //   command: "init"
+        // };
+
+        // timeline.push(pavlovia_init);
+
+        var preload = {
+          type: 'preload',
+          auto_preload: true,
+          images: all_images,
+          message: "Please wait while the experiment loads.",
+          continue_after_error: true,
+          max_load_time: 15000
+        }
+        timeline.push(preload);
+
 
         var enter_fullscreen = {
           type: 'fullscreen',
@@ -143,6 +170,13 @@
     var debrief = create_debrief_questions();
     timeline = timeline.concat(debrief);
 
+    /* finish connection with pavlovia.org */
+    // var pavlovia_finish = {
+    //   type: "pavlovia",
+    //   command: "finish"
+    // };
+    // timeline.push(pavlovia_finish);
+
     console.log(timeline)
 
     // CREATE FINAL EXPERIMENT MESSAGE/ DEBRIEF AFTER DATA SUCCESSFULLY STORED
@@ -177,7 +211,7 @@
        show_progress_bar: true,
        on_finish: function() {
         //jsPsych.data.displayData();
-        jsPsych.data.get().localSave('csv','catAct_test.csv');
+        //jsPsych.data.get().localSave('csv','catAct_test.csv');
         jsPsych.init({
           timeline: experimentFinal
         });

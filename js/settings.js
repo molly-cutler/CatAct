@@ -47,3 +47,26 @@ var sampling_image_names = [
 "stims/veh_c2_sup3.jpg",
 "stims/veh_c2_bas3.jpg"];
 
+var training_image_names = [
+"stims/ani_c3_sub1.jpg",
+"stims/ani_c3_sub2.jpg",
+"stims/ani_c3_sub3.jpg",
+"stims/ani_c3_bas1.jpg",
+"stims/ani_c3_bas2.jpg",
+"stims/ani_c3_sup1.jpg",
+"stims/ani_c3_sup2.jpg",
+"stims/veg_c1_sub1.jpg",
+"stims/veg_c1_sub2.jpg",
+"stims/veg_c1_sub3.jpg",
+"stims/veg_c1_bas1.jpg",
+"stims/veg_c1_bas2.jpg",
+"stims/veg_c1_sup1.jpg",
+"stims/veg_c1_sup2.jpg",
+"stims/veh_c2_sub1.jpg",
+"stims/veh_c2_sub2.jpg",
+"stims/veh_c2_sub3.jpg",
+"stims/veh_c2_bas1.jpg",
+"stims/veh_c2_bas2.jpg",
+"stims/veh_c2_sup1.jpg",
+"stims/veh_c2_sup2.jpg",];
+
